@@ -1,6 +1,6 @@
 // src/pages/product/main/ProductPage.jsx
 
-import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react';
+import React, { useState, useEffect, useCallback, Suspense, lazy, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -43,13 +43,12 @@ const ProductPage = () => {
     const { language, t } = useLanguage();
     const navigate = useNavigate();
 
-    // --- STATE MANAGEMENT (Corrected) ---
+    // --- STATE MANAGEMENT ---
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [initialFilterOptions, setInitialFilterOptions] = useState({ colors: [], sizes: [], materials: [], priceRange: { maxPrice: 1000 } });
     
-    const [isLoading, setIsLoading] = useState(true); // Manages loading state for products
-    const [isPageDataReady, setIsPageDataReady] = useState(false); // Tracks if initial categories/filters are loaded
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const [filters, setFilters] = useState({});
@@ -57,46 +56,64 @@ const ProductPage = () => {
     
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+    
+    // --- FIX: Use a ref to robustly track if the component has mounted ---
+    // This will prevent the update effect from running on the initial render.
+    const isMounted = useRef(false);
 
-    // --- FIX: Effect 1 - Fetches essential page data ONLY ONCE ---
+    // Effect 1: Fetches ALL essential data in parallel on initial component mount.
+    // This runs only ONCE.
     useEffect(() => {
-        const fetchPageData = async () => {
+        const fetchInitialData = async () => {
+            setIsLoading(true);
+            setError(null);
             try {
-                const [categoriesRes, filtersRes] = await Promise.all([
+                // Run all initial requests in parallel to avoid a request waterfall
+                const [categoriesRes, filtersRes, productsRes] = await Promise.all([
                     axios.get(`${API_BASE_URL}/api/categories`),
-                    axios.get(`${API_BASE_URL}/api/products/filters`)
+                    axios.get(`${API_BASE_URL}/api/products/filters`),
+                    axios.get(`${API_BASE_URL}/api/products?page=1&limit=${PRODUCTS_PER_PAGE}`)
                 ]);
+                
                 setCategories(categoriesRes.data);
                 setInitialFilterOptions(filtersRes.data);
+                setProducts(productsRes.data.products);
+                setTotalPages(productsRes.data.totalPages);
+                
             } catch (err) {
-                console.error("Failed to fetch page data:", err);
+                console.error("Failed to fetch initial page data:", err);
                 setError(t('error_load_essentials'));
             } finally {
-                setIsPageDataReady(true); // Mark essentials as ready, regardless of success/failure
+                setIsLoading(false);
             }
         };
-        fetchPageData();
-    }, [t]); // This runs once on mount.
 
-    // Debounce filter changes
+        fetchInitialData();
+    }, [t]);
+
+    // Effect 2: Debounces filter changes to prevent excessive API calls.
     useEffect(() => {
         const timer = setTimeout(() => {
             setDebouncedFilters(filters);
-            setCurrentPage(1); 
+            setCurrentPage(1); // Reset to page 1 when filters change
         }, 500);
         return () => clearTimeout(timer);
     }, [filters]);
 
-    // --- FIX: Effect 2 - Fetches products. This is now safe from infinite loops ---
+    // Effect 3: Fetches products when filters or page number change, but SKIPS the initial render.
     useEffect(() => {
-        // Guard clause: Do not run this effect until the essential page data is ready.
-        if (!isPageDataReady) {
+        // If the component has not mounted yet, set the ref to true and exit.
+        // This ensures this effect block is skipped on the very first render.
+        if (!isMounted.current) {
+            isMounted.current = true;
             return;
         }
 
-        const fetchProducts = async () => {
+        const fetchFilteredProducts = async () => {
             setIsLoading(true);
             setError(null);
+            window.scrollTo(0, 0); // Scroll to top for better UX on page/filter change
+
             try {
                 const params = new URLSearchParams({
                     ...debouncedFilters,
@@ -105,12 +122,11 @@ const ProductPage = () => {
                 });
                 
                 const response = await axios.get(`${API_BASE_URL}/api/products?${params.toString()}`);
-                
                 setProducts(response.data.products);
                 setTotalPages(response.data.totalPages);
-                // No need to set currentPage from response if we already have it in state
+
             } catch (err) {
-                console.error("Failed to fetch products:", err);
+                console.error("Failed to fetch filtered products:", err);
                 setError(t('error_load_products'));
                 setProducts([]);
             } finally {
@@ -118,9 +134,9 @@ const ProductPage = () => {
             }
         };
 
-        fetchProducts();
-    // This effect now correctly depends on filters, the page, and the one-time flag.
-    }, [debouncedFilters, currentPage, isPageDataReady, t]);
+        fetchFilteredProducts();
+
+    }, [debouncedFilters, currentPage, t]); // Dependencies that trigger updates
 
     const handleFilterChange = useCallback((newFilters) => {
         setFilters(newFilters);
@@ -132,12 +148,11 @@ const ProductPage = () => {
     const handlePageChange = (page) => {
         if (page !== currentPage) {
             setCurrentPage(page);
-            window.scrollTo(0, 0);
         }
     };
 
     const renderContent = () => {
-        // Show skeletons only on the very first load.
+        // Show skeletons only on the very first load
         if (isLoading && products.length === 0) {
             return (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -195,7 +210,6 @@ const ProductPage = () => {
                                     maxPrice: initialFilterOptions.priceRange.maxPrice
                                 }}
                                 onFilterChange={handleFilterChange}
-                                isLoading={isLoading}
                             />
                          </Suspense>
                     </aside>

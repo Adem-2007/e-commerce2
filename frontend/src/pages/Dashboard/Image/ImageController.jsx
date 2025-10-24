@@ -2,27 +2,66 @@
 
 import React, { useState, useRef, useCallback } from 'react';
 import axios from 'axios';
-import { UploadCloud, Image as ImageIcon, LoaderCircle, Link2 } from 'lucide-react';
+import { 
+  UploadCloud, 
+  Image as ImageIcon, 
+  LoaderCircle, 
+  ArrowRight, 
+  Download, 
+  RefreshCw, 
+  Scissors 
+} from 'lucide-react';
+
+// Defines the possible actions the user can take
+const OPERATIONS = {
+  CONVERT: 'CONVERT',
+  REMOVE_BG: 'REMOVE_BG',
+};
 
 const ImageController = () => {
+  // State for the selected file and its preview URL
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedPreview, setSelectedPreview] = useState(null);
-  const [avifImage, setAvifImage] = useState(null);
-  const [isConverting, setIsConverting] = useState(false);
+
+  // State for the processed image and its temporary URL
+  const [outputImage, setOutputImage] = useState(null);
+
+  // UI/UX states
+  const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState(null);
-  const [isDraggingOver, setIsDraggingOver] = useState(false); // For visual feedback
+  const [isDraggingOver, setIsDraggingOver] = useState(false);
+  
+  // State for the chosen operation and output format
+  const [operation, setOperation] = useState(OPERATIONS.CONVERT);
+  const [outputFormat, setOutputFormat] = useState('avif');
+  
   const fileInputRef = useRef(null);
 
-  // Universal function to process a file object
-  const processFile = useCallback((file) => {
-    if (avifImage) URL.revokeObjectURL(avifImage);
-    setAvifImage(null);
+  // Resets the component to its initial state
+  const resetState = useCallback(() => {
+    if (outputImage) URL.revokeObjectURL(outputImage);
+    setSelectedFile(null);
+    setSelectedPreview(null);
+    setOutputImage(null);
     setError(null);
+    setIsProcessing(false);
+    if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+    }
+  }, [outputImage]);
+
+  // Processes a new file upload, creating a preview
+  const processFile = useCallback((file) => {
+    if (!file || !file.type.startsWith('image/')) {
+        setError('Invalid file type. Please upload an image.');
+        return;
+    }
+    resetState();
     setSelectedFile(file);
     setSelectedPreview(URL.createObjectURL(file));
-  }, [avifImage]);
+  }, [resetState]);
 
-  // Handle file selection from the input dialog
+  // Handles file selection from the file input
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -30,161 +69,165 @@ const ImageController = () => {
     }
   };
 
-  // Convert an uploaded file
-  const convertUploadedFile = async () => {
+  // --- API CALL 1: Node.js Backend for Format Conversion ---
+  const convertFile = async (file) => {
     const formData = new FormData();
-    formData.append('image', selectedFile);
-    return axios.post('http://localhost:5000/api/convert/avif', formData, {
-      responseType: 'blob',
+    formData.append('image', file);
+    return axios.post(`http://localhost:5000/api/convert/${outputFormat}`, formData, {
+      responseType: 'blob', // Important: receives the image as a binary blob
     });
   };
 
-  // Convert an image from a URL
-  const convertFromUrl = async (imageUrl) => {
-    return axios.post('http://localhost:5000/api/convert/from-url', { imageUrl }, {
-      responseType: 'blob',
+  // --- API CALL 2: Python Backend for Background Removal ---
+  const removeBackground = async (file) => {
+    const formData = new FormData();
+    formData.append('image', file);
+    return axios.post(`http://localhost:5001/api/remove-bg`, formData, {
+      responseType: 'blob', // Important: receives the image as a binary blob
     });
   };
-
-  // --- Drag and Drop Handlers ---
-  const handleDragOver = (event) => {
-    event.preventDefault(); // This is crucial to allow dropping
-    setIsDraggingOver(true);
-  };
-
-  const handleDragLeave = (event) => {
+  
+  // Handles dropping a file onto the upload area
+  const handleDrop = useCallback((event) => {
     event.preventDefault();
     setIsDraggingOver(false);
-  };
-
-  const handleDrop = useCallback(async (event) => {
-    event.preventDefault();
-    setIsDraggingOver(false);
-    setError(null);
-
-    // Case 1: A file from the user's computer was dropped
     if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
       processFile(event.dataTransfer.files[0]);
-      return;
     }
+  }, [processFile]);
 
-    // Case 2: An image from the internet was dropped (we get its URL)
-    const imageUrl = event.dataTransfer.getData('text/uri-list');
-    if (imageUrl) {
-      setIsConverting(true);
-      if (avifImage) URL.revokeObjectURL(avifImage);
-      try {
-        const response = await convertFromUrl(imageUrl);
-        const temporaryUrl = URL.createObjectURL(response.data);
-        setAvifImage(temporaryUrl);
-        // Show the original image as the preview
-        setSelectedFile(null); // Clear file selection
-        setSelectedPreview(imageUrl); // Use the original URL for preview
-      } catch (err) {
-        setError('Failed to fetch or convert image from URL.');
-        console.error(err);
-      } finally {
-        setIsConverting(false);
-      }
-      return;
-    }
-  }, [avifImage, processFile]);
-
-  // Main conversion function triggered by the button
-  const handleConvertClick = async () => {
+  // --- MAIN LOGIC: Determines which backend to call ---
+  const handleProcessClick = async () => {
     if (!selectedFile) {
       setError('Please select an image first.');
       return;
     }
-    setIsConverting(true);
+    setIsProcessing(true);
     setError(null);
-    if (avifImage) URL.revokeObjectURL(avifImage);
+    if (outputImage) URL.revokeObjectURL(outputImage);
 
     try {
-      const response = await convertUploadedFile();
+      let response;
+      // "Smart" logic: checks the selected operation and calls the correct API
+      if (operation === OPERATIONS.CONVERT) {
+        response = await convertFile(selectedFile);
+      } else { // operation is REMOVE_BG
+        response = await removeBackground(selectedFile);
+      }
+      // Creates a temporary local URL for the processed image to display it
       const temporaryUrl = URL.createObjectURL(response.data);
-      setAvifImage(temporaryUrl);
+      setOutputImage(temporaryUrl);
     } catch (err) {
-      setError('An error occurred during conversion.');
+      // Handles errors from either backend server
+      const errorMsg = err.response?.data?.error || err.response?.data?.message || 'An error occurred during processing.';
+      setError(errorMsg);
       console.error(err);
     } finally {
-      setIsConverting(false);
+      setIsProcessing(false);
     }
   };
 
+  // Drag-and-drop event handlers
+  const handleDragOver = (event) => { event.preventDefault(); setIsDraggingOver(true); };
+  const handleDragLeave = (event) => { event.preventDefault(); setIsDraggingOver(false); };
+
+  // Determines the correct file extension for the download link
+  const getFileExtension = () => {
+    // --- MODIFIED LINE ---
+    if (operation === OPERATIONS.REMOVE_BG) return 'webp'; // Changed from 'png' to 'webp'
+    return outputFormat;
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 sm:p-8">
-      <div className="w-full max-w-5xl">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4 sm:p-6 md:p-8">
+      <div className="w-full max-w-6xl">
         <header className="text-center mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800">AVIF Image Converter</h1>
-          <p className="text-gray-600 mt-2">Upload a file, or drag an image from any website.</p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-800 tracking-tight">Modern Image Toolkit</h1>
+          <p className="text-gray-500 mt-2 text-lg">Convert formats or remove backgrounds with ease.</p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Left Panel: Upload */}
-          <div className="bg-white rounded-lg shadow-md p-6 flex flex-col">
-            <h2 className="text-xl font-semibold text-gray-700 text-center mb-4">Upload</h2>
-            <div
-              className={`flex-grow flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-4 transition-colors ${
-                isDraggingOver ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
-              }`}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-              onClick={() => fileInputRef.current.click()} // Keep click functionality
-            >
-              <input type="file" ref={fileInputRef} accept="image/*" onChange={handleFileChange} className="hidden" />
-              {selectedPreview ? (
-                <img src={selectedPreview} alt="Selected" className="max-h-80 w-auto object-contain rounded-md" />
-              ) : (
-                <div className="text-center text-gray-500 cursor-pointer">
-                  <UploadCloud className="mx-auto h-12 w-12" />
-                  <p className="mt-2 font-semibold">Click to browse</p>
-                  <p className="text-sm">or drag and drop an image here</p>
-                </div>
-              )}
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          {/* Left Side: Upload Area */}
+          <div
+            className={`relative group bg-white rounded-2xl shadow-lg p-6 aspect-square flex flex-col items-center justify-center border-4 border-dashed transition-all duration-300 ${isDraggingOver ? 'border-blue-500 bg-blue-50 scale-105' : 'border-gray-300'}`}
+            onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop}
+            onClick={() => !selectedPreview && fileInputRef.current.click()}
+          >
+            <input type="file" ref={fileInputRef} accept="image/*" onChange={handleFileChange} className="hidden" />
+            {selectedPreview ? (
+              <>
+                <img src={selectedPreview} alt="Selected Preview" className="max-h-full max-w-full object-contain rounded-lg" />
+                <button onClick={resetState} className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md hover:bg-red-500 hover:text-white transition-colors"><RefreshCw size={20} /></button>
+              </>
+            ) : (
+              <div className="text-center text-gray-400 cursor-pointer p-8">
+                <UploadCloud className="mx-auto h-20 w-20 mb-4 transition-transform group-hover:scale-110" />
+                <p className="mt-2 font-bold text-xl text-gray-600">Click to Browse</p>
+                <p className="text-md">or drag and drop an image here</p>
+              </div>
+            )}
           </div>
 
-          {/* Right Panel: Result */}
-          <div className="bg-white rounded-lg shadow-md p-6 flex flex-col">
-            <h2 className="text-xl font-semibold text-gray-700 text-center mb-4">Result</h2>
-            <div className="flex-grow flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 bg-gray-50">
-              {isConverting ? (
-                 <div className="text-center text-blue-600">
-                   <LoaderCircle className="mx-auto h-12 w-12 animate-spin" />
-                   <p className="mt-2 font-semibold">{selectedFile ? 'Converting...' : 'Fetching & Converting...'}</p>
-                 </div>
-              ) : avifImage ? (
-                <img src={avifImage} alt="AVIF version" className="max-h-80 w-auto object-contain rounded-md" />
-              ) : (
-                <div className="text-center text-gray-500">
-                  <ImageIcon className="mx-auto h-12 w-12" />
-                  <p className="mt-2 font-semibold">Your converted AVIF image will appear here</p>
+          {/* Right Side: Actions & Result Display */}
+          <div className="flex flex-col items-center justify-center text-center">
+              {/* Operation Selector */}
+              <div className="mb-6 w-full max-w-xs">
+                <label className="block text-sm font-medium text-gray-700 mb-2">Choose Operation</label>
+                <div className="flex rounded-lg shadow-sm border border-gray-300">
+                  <button onClick={() => setOperation(OPERATIONS.CONVERT)} className={`flex-1 px-4 py-2 text-sm font-medium transition-colors rounded-l-md ${operation === OPERATIONS.CONVERT ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}`}>Convert Format</button>
+                  <button onClick={() => setOperation(OPERATIONS.REMOVE_BG)} className={`flex-1 px-4 py-2 text-sm font-medium transition-colors rounded-r-md ${operation === OPERATIONS.REMOVE_BG ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}`}>Remove Background</button>
+                </div>
+              </div>
+              
+              {/* Conditional UI: Shows only for "CONVERT" operation */}
+              {operation === OPERATIONS.CONVERT && (
+                <div className="mb-6 w-full max-w-xs">
+                  <label htmlFor="format-select" className="block text-sm font-medium text-gray-700 mb-2">Choose Output Format</label>
+                  <select id="format-select" value={outputFormat} onChange={(e) => setOutputFormat(e.target.value)} className="w-full px-4 py-2 text-lg border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" disabled={isProcessing}>
+                    <option value="avif">AVIF</option>
+                    <option value="webp">WebP</option>
+                  </select>
                 </div>
               )}
+
+            {/* Action Button: Changes based on selected operation */}
+            {selectedFile && !outputImage && (
+                <button
+                  onClick={handleProcessClick}
+                  disabled={isProcessing}
+                  className="flex items-center justify-center px-10 py-4 text-white font-bold bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 disabled:bg-gray-400 w-full max-w-xs"
+                >
+                {isProcessing ? (
+                  <><LoaderCircle className="animate-spin mr-2" />Processing...</>
+                ) : (
+                  operation === OPERATIONS.CONVERT ? (
+                    <><ArrowRight className="mr-2" />Convert to {outputFormat.toUpperCase()}</>
+                  ) : (
+                    <><Scissors className="mr-2" />Remove Background</>
+                  )
+                )}
+                </button>
+            )}
+
+            {/* Result Display Box */}
+            <div className="mt-6 w-full max-w-xs h-64 bg-gray-100 rounded-lg flex items-center justify-center p-4 border border-gray-200">
+                {outputImage ? <img src={outputImage} alt="Processed Output" className="max-h-full max-w-full object-contain rounded-md" />
+                : (
+                    <div className="text-center text-gray-500">
+                        <ImageIcon className="mx-auto h-12 w-12" /><p className="mt-2 font-semibold">Your result will be here</p>
+                    </div>
+                )}
             </div>
+            
+            {/* Download Button */}
+            {outputImage && !isProcessing && (
+                <a href={outputImage} download={`processed.${getFileExtension()}`} className="flex items-center justify-center mt-6 px-10 py-4 text-white font-bold bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 transition-colors duration-300 w-full max-w-xs">
+                  <Download className="mr-2" />Download
+                </a>
+            )}
+
+            {error && <p className="text-red-500 mt-4 font-semibold">{error}</p>}
           </div>
-        </div>
-
-        {/* Action Area */}
-        <div className="mt-8 text-center">
-          {error && <p className="text-red-500 mb-4">{error}</p>}
-          
-          {selectedFile && !avifImage && !isConverting && (
-            <button
-              onClick={handleConvertClick}
-              className="px-8 py-3 text-white font-bold bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-300"
-            >
-              Convert to AVIF
-            </button>
-          )}
-
-          {avifImage && !isConverting && (
-            <a href={avifImage} download="converted.avif" className="inline-block px-8 py-3 text-white font-bold bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-colors duration-300">
-              Download
-            </a>
-          )}
         </div>
       </div>
     </div>

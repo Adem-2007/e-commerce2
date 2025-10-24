@@ -7,13 +7,16 @@ import { DashboardLanguageProvider } from './context/DashboardLanguageContext';
 
 // --- LAYOUTS & COMMON ---
 import Navbar from './common/Navbar/Navbar';
-import Footer from './common/footer/Footer';
+// --- IMPLEMENTATION: Lazily import the Footer component ---
+// Instead of a standard import, we use React.lazy. This splits the Footer's code
+// into a separate chunk that is loaded on-demand, reducing the initial bundle size.
+const Footer = lazy(() => import('./common/footer/Footer'));
 import DashboardLayout from './components/dashboard/DashboardLayout';
 import ScrollToTop from './hooks/ScrollToTop';
 import ProtectedRoute from './components/ProtectRouter/ProtectedRoute';
 import DynamicHead from './components/DynamicHead';
 
-// --- LAZY-LOADED PUBLIC PAGES ---
+// --- LAZY-LOADED PUBLIC PAGES (This part is already excellent and remains unchanged) ---
 const HomePage = lazy(() => import('./pages/Home/HomePage'));
 const AboutPage = lazy(() => import('./pages/About/AboutPage'));
 const ContactUsPage = lazy(() => import('./pages/contact/ContactUsPage'));
@@ -25,7 +28,7 @@ const ResetPasswordPage = lazy(() => import('./pages/Auth/ResetPasswordPage'));
 const BuyPage = lazy(() => import('./pages/Product/BuyPage/BuyPage'));
 const AuthCallbackPage = lazy(() => import('./pages/Auth/components/AuthCallbackPage'));
 
-// --- LAZY-LOADED DASHBOARD PAGES ---
+// --- LAZY-LOADED DASHBOARD PAGES (This part is also excellent) ---
 const DashboardOverview = lazy(() => import('./pages/Dashboard/overview/DashboardOverview'));
 const OrdersPage = lazy(() => import('./pages/Dashboard/Orders/OrdersPage'));
 const CategoriesProducts = lazy(() => import('./pages/Dashboard/Categories/CategoriesProducts'));
@@ -41,13 +44,19 @@ const ImageController = lazy(() => import('./pages/Dashboard/Image/ImageControll
 
 // --- WRAPPERS FOR CONTEXT PROVIDERS ---
 const PublicLayoutWrapper = () => {
-  // The useEffect hook for injecting Facebook pixels has been removed.
   return (
     <LanguageProvider>
       <div className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-grow"><Outlet /></main>
-        <Footer />
+        
+        {/* --- IMPLEMENTATION: Wrap the lazy Footer in a Suspense boundary --- */}
+        {/* A lazy component MUST be rendered inside a Suspense component. */}
+        {/* We use `fallback={null}` because it's okay for the footer (a non-critical element) */}
+        {/* to appear a fraction of a second later without a distracting loader. */}
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
       </div>
     </LanguageProvider>
   );
@@ -66,6 +75,8 @@ const PageLoader = () => (
 );
 
 function App() {
+  // The routing structure itself is well-organized and doesn't need changes.
+  // The main <Suspense> handles the lazy-loaded pages.
   return (
     <>
       <DynamicHead />

@@ -1,6 +1,6 @@
 // src/pages/product/main/components/Sidebar/ProductFilterSidebar.jsx
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { SlidersHorizontal, X } from 'lucide-react';
 import { useLanguage } from '../../../../../context/LanguageContext';
 
@@ -13,7 +13,7 @@ import ColorFilter from './components/ColorFilter';
 import SizeFilter from './components/SizeFilter';
 import MaterialFilter from './components/MaterialFilter';
 
-const FilterContent = ({ categories, availableFilters, onFilterChange, clearFilters, hasActiveFilters, isLoading, t }) => {
+const FilterContent = ({ categories, availableFilters, onFilterChange, clearFilters, hasActiveFilters, t }) => {
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedColors, setSelectedColors] = useState([]);
     const [selectedSizes, setSelectedSizes] = useState([]);
@@ -96,7 +96,7 @@ const FilterContent = ({ categories, availableFilters, onFilterChange, clearFilt
 };
 
 
-const ProductFilterSidebar = ({ categories, onFilterChange, availableFilters, isLoading }) => {
+const ProductFilterSidebar = ({ categories, onFilterChange, availableFilters }) => {
     const { language, t } = useLanguage();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [hasActiveFilters, setHasActiveFilters] = useState(false);
@@ -121,7 +121,6 @@ const ProductFilterSidebar = ({ categories, onFilterChange, availableFilters, is
                         onFilterChange={handleFilterChange}
                         clearFilters={handleClearFilters}
                         hasActiveFilters={hasActiveFilters}
-                        isLoading={isLoading}
                         t={t}
                     />
                 </div>
@@ -152,7 +151,6 @@ const ProductFilterSidebar = ({ categories, onFilterChange, availableFilters, is
                                     setIsModalOpen(false);
                                 }}
                                 hasActiveFilters={hasActiveFilters}
-                                isLoading={isLoading}
                                 t={t}
                             />
                         </div>

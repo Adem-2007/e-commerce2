@@ -2,23 +2,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 
-/**
- * --- MODIFIED FUNCTION ---
- * This function now correctly handles both Base64 Data URIs and traditional URL paths.
- * - If the 'imageIdentifier' starts with 'data:', it's recognized as a self-contained
- *   Base64 image and is returned directly. The <img> tag can render this immediately.
- * - If it's not a Data URI, it's treated as a relative path, and the API base URL
- *   is prepended to create a full, fetchable URL.
- */
+// This helper function is correct and does not need changes.
 const getFullImageUrl = (imageIdentifier) => {
     if (!imageIdentifier) return null;
-
-    // Check if the identifier is a Base64 Data URI.
     if (imageIdentifier.startsWith('data:')) {
         return imageIdentifier;
     }
-
-    // Otherwise, assume it's a file path and build the full URL.
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
     return `${API_BASE_URL}${imageIdentifier}`;
 };
@@ -31,8 +20,17 @@ const ProductImage = ({ product, t, language, imageSize }) => {
 
     const sliderImages = useMemo(() => {
         if (!product?.imageUrls) return [];
-        const mainImage = product.imageUrls.medium;
+
+        // --- FIX: Prioritize 'thumbnail' for grid view, with a fallback to 'medium'. ---
+        // This makes the component versatile. It will use the lightweight thumbnail
+        // from the main products API call, but can still use the 'medium' image
+        // if the full product object is passed (e.g., on a product detail page).
+        const mainImage = product.imageUrls.thumbnail || product.imageUrls.medium;
+
+        // This line will gracefully handle the fact that secondaryImageUrls are not sent
+        // for the grid view. It will result in an empty array as intended.
         const secondaryImages = (product.secondaryImageUrls || []).map(img => img.medium);
+        
         return [mainImage, ...secondaryImages].filter(Boolean);
     }, [product]);
 
@@ -53,6 +51,7 @@ const ProductImage = ({ product, t, language, imageSize }) => {
         };
     }, [imageSize]);
 
+    // --- No changes needed for the rest of the component ---
     const prevSlide = (e) => { e.stopPropagation(); e.preventDefault(); const isFirstSlide = currentIndex === 0; const newIndex = isFirstSlide ? sliderImages.length - 1 : currentIndex - 1; setCurrentIndex(newIndex); };
     const nextSlide = (e) => { e.stopPropagation(); e.preventDefault(); const isLastSlide = currentIndex === sliderImages.length - 1; const newIndex = isLastSlide ? 0 : currentIndex + 1; setCurrentIndex(newIndex); };
     const goToSlide = (e, slideIndex) => { e.stopPropagation(); e.preventDefault(); setCurrentIndex(slideIndex); };
