@@ -1,0 +1,50 @@
+{
+  "en": {
+    "collections": {
+      "addProductModal": {
+        "prevButton": "Previous",
+        "nextButton": "Next",
+        "stepIndicator": "Step {current} of {total}",
+        "livePreviewTitle": "Live Preview",
+        "customizeSize": "Customize...",
+        "preview": {
+          "name": "Product Name",
+          "description": "A short and compelling description for your product will appear here.",
+          "category": "Category"
+        }
+      }
+    }
+  },
+  "fr": {
+    "collections": {
+      "addProductModal": {
+        "prevButton": "Précédent",
+        "nextButton": "Suivant",
+        "stepIndicator": "Étape {current} sur {total}",
+        "livePreviewTitle": "Aperçu en Direct",
+        "customizeSize": "Personnaliser...",
+        "preview": {
+          "name": "Nom du Produit",
+          "description": "Une description courte et attrayante de votre produit apparaîtra ici.",
+          "category": "Catégorie"
+        }
+      }
+    }
+  },
+  "ar": {
+    "collections": {
+      "addProductModal": {
+        "prevButton": "السابق",
+        "nextButton": "التالي",
+        "stepIndicator": "خطوة {current} من {total}",
+        "livePreviewTitle": "معاينة حية",
+        "customizeSize": "تخصيص...",
+        "preview": {
+          "name": "اسم المنتج",
+          "description": "سيظهر هنا وصف قصير وجذاب لمنتجك.",
+          "category": "الفئة"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "home": "الرئيسية",
+  "shop": "المتجر",
+  "contact": "اتصل بنا",
+  "about": "من نحن",
+  "dashboard": "لوحة التحكم",
+  "menu": "القائمة",
+  "explore": "استكشف",
+  "newest_products_title": "أحدث المنتجات",
+  "newest_products_subtitle": "استكشف أحدث مجموعة من التصميمات التي تم إصدارها حديثًا.",
+  "showcase_title": "معرض المصمم",
+  "showcase_subtitle": "نظرة منسقة على أحدث تصميماتنا، مقدمة بكل هدوء.",
+  "buy_now": "شراء الآن",
+  "add_to_cart": "أضف إلى السلة",
+  "added": "تمت الإضافة!",
+  "aria_prev_product": "المنتج السابق",
+  "aria_next_product": "المنتج التالي",
+  "error_no_items": "لا توجد عناصر جديدة لعرضها في الوقت الحالي.",
+  "error_unavailable": "كتالوجنا غير متوفر حاليًا.",
+  "error_empty": "المعرض فارغ.",
+  "new_arrival": "جديد",
+  "add_to_favorites": "إضافة إلى المفضلة",
+  "edit_product": "تعديل المنتج",
+  "delete_product": "حذف المنتج",
+  "view_details": "عرض التفاصيل",
+  "category": "الفئة",
+  "gender": "الجنس",
+  "height": "الطول",
+  "materials": "الخامات",
+  "colors": "الألوان",
+  "product_sizes": "المقاسات",
+  "explore_collection_title": "استكشف مجموعتنا",
+  "explore_collection_subtitle": "اكتشف القطع المصممة بدقة، والمصممة للفرد العصري.",
+  "error_load_essentials": "لا يمكن تحميل أساسيات الصفحة. يرجى محاولة التحديث.",
+  "error_load_products": "لا يمكن تحميل المنتجات في هذا الوقت. يرجى المحاولة مرة أخرى في وقت لاحق.",
+  "empty_products_message": "لم يتم العثور على منتجات. حاول تعديل عوامل التصفية للعثور على ما تبحث عنه.",
+  "empty_products_filtered_message": "لا توجد منتجات تطابق مجموعة عوامل التصفية الحالية.",
+  "filters": "الفلاتر",
+  "clear": "مسح",
+  "done": "تم",
+  "gender_man": "رجل",
+  "gender_female": "امرأة",
+  "gender_baby": "طفل",
+  "height_cm": "الطول (سم)",
+  "min": "الأدنى",
+  "max": "الأقصى",
+  "price_range": "نطاق السعر",
+  "price_min_label": "الأدنى:",
+  "price_max_label": "الأقصى:",
+  "apply": "تطبيق",
+  "applying": "جار التطبيق...",
+  "error_product_not_found": "المنتج غير موجود. قد يكون تم نقله أو حذفه.",
+  "error_something_went_wrong": "حدث خطأ ما",
+  "back_to_collection": "العودة إلى المجموعة",
+  "view": "عرض",
+  "color_label": "اللون",
+  "size_label": "المقاس",
+  "you_might_also_like": "قد يعجبك ايضا",
+  "close_esc": "إغلاق (Esc)",
+  "previous_arrow": "السابق (السهم الأيسر)",
+  "next_arrow": "التالي (السهم الأيمن)",
+  "auth_page": {
+    "loading_message": "جاري إنشاء الاتصال...",
+    "create_account_title": "إنشاء حساب",
+    "login_title": "مرحباً بعودتك",
+    "register_subtitle": "قم بإعداد حساب المسؤول الأول.",
+    "login_subtitle": "سجل الدخول لإدارة متجرك.",
+    "placeholders": {
+      "name": "الاسم الكامل",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور"
+    },
+    "buttons": {
+      "sign_in": "تسجيل الدخول",
+      "create_account": "إنشاء حساب",
+      "forgot_password": "هل نسيت كلمة المرور؟",
+      "throttled": "الرجاء الانتظار ({seconds} ثانية)",
+      "sending": "جاري الإرسال...",
+      "send_code": "إرسال رمز التحقق",
+      "back_to_login": "العودة لتسجيل الدخول"
+    },
+    "forgot_view": {
+      "title": "إعادة تعيين كلمة المرور",
+      "subtitle": "أدخل بريدك الإلكتروني. سنرسل لك رمزًا مكونًا من 6 أرقام للتحقق."
+    },
+    "decorative": {
+      "title": "مرحباً بك في",
+      "subtitle": "ادخل إلى مركز قيادة عالم التجارة الإلكترونية الخاص بك. قم بالإدارة والنمو والإلهام."
+    },
+    "errors": {
+      "connect_failed": "تعذر الاتصال بالخادم.",
+      "throttled": "محاولات كثيرة جداً. الرجاء الانتظار {seconds} ثواني."
+    }
+  },
+  "reset_password_page": {
+    "title": "التحقق وإعادة التعيين",
+    "subtitle_prefix": "تم إرسال رمز إلى",
+    "subtitle_email_fallback": "بريدك الإلكتروني",
+    "subtitle_suffix": ". أدخله أدناه لإعادة تعيين كلمة مرورك.",
+    "placeholders": {
+      "code": "رمز التحقق المكون من 6 أرقام",
+      "new_password": "كلمة المرور الجديدة",
+      "confirm_password": "تأكيد كلمة المرور الجديدة"
+    },
+    "buttons": {
+      "processing": "جاري المعالجة...",
+      "reset": "التحقق وإعادة تعيين كلمة المرور"
+    },
+    "messages": {
+      "success": "تمت إعادة تعيين كلمة المرور بنجاح! جاري التوجيه لتسجيل الدخول..."
+    },
+    "errors": {
+      "passwords_no_match": "كلمات المرور الجديدة غير متطابقة.",
+      "password_too_short": "يجب أن لا تقل كلمة المرور عن 6 أحرف.",
+      "invalid_code": "الرجاء إدخال رمز صالح مكون من 6 أرقام."
+    }
+  },
+  "buy_modal": {
+    "title": "معلومات التوصيل",
+    "subtitle": "يرجى تقديم التفاصيل الخاصة بك لإتمام الطلب.",
+    "summary_panel": {
+      "items_in_cart": "{count} عناصر في السلة",
+      "uncategorized": "غير مصنف",
+      "subtotal": "المجموع الفرعي",
+      "delivery": "التوصيل",
+      "total": "المجموع الكلي",
+      "delivery_partner": "شريك التوصيل",
+      "select_option_placeholder": "اختر خيارًا",
+      "select_wilaya_placeholder": "اختر ولاية",
+      "color": "اللون",
+      "size": "المقاس",
+      "quantity": "الكمية"
+    },
+    "form": {
+      "first_name": "الاسم الأول",
+      "last_name": "اسم العائلة",
+      "email": "البريد الإلكتروني",
+      "phone1": "رقم الهاتف",
+      "phone2": "هاتف اختياري",
+      "phone_validation_title": "يجب أن يتكون رقم الهاتف من 10 أرقام بالضبط.",
+      "wilaya": "ولاية",
+      "wilaya_placeholder": "-- اختر ولاية متاحة --",
+      "municipality": "بلدية",
+      "municipality_placeholder": "-- اختر بلدية --",
+      "courier": "شركة التوصيل",
+      "courier_price_placeholder": "اختر للاطلاع على الخيارات",
+      "delivery_option": "خيار التوصيل",
+      "delivery_option_home": "إلى منزلك",
+      "delivery_option_office": "إلى مكتبنا",
+      "address": "العنوان الكامل",
+      "address_placeholder": "مثال: الشارع، المبنى، الشقة",
+      "place_order_button": "إتمام الطلب",
+      "disabled_order_button": "اختر خيار التوصيل"
+    },
+    "confirm_modal": {
+      "title": "تأكيد طلبك",
+      "text": "يرجى مراجعة التفاصيل الخاصة بك. بمجرد التأكيد، سيتم تقديم طلبك وسيقوم فريقنا بإعداده للتسليم.",
+      "cancel_button": "إلغاء",
+      "confirm_button": "تأكيد وإرسال",
+      "submitting_button": "جاري الإرسال..."
+    },
+    "success_modal": {
+      "title": "تم استلام الطلب!",
+      "text": "شكرًا لك! لقد استلمنا طلبك وسنتصل بك قريبًا لوضع اللمسات الأخيرة على التفاصيل."
+    }
+  },
+  "cart_page": {
+    "empty_title": "عربة التسوق فارغة",
+    "empty_subtitle": "يبدو أنك لم تقم بإضافة أي شيء إلى سلة التسوق الخاصة بك حتى الآن.",
+    "continue_shopping": "مواصلة التسوق",
+    "main_title": "عربة التسوق الخاصة بك",
+    "item_count_one": "لديك منتج واحد في سلتك.",
+    "item_count_other": "لديك {count} منتجات في سلتك.",
+    "summary_title": "ملخص الطلب",
+    "total": "المجموع",
+    "checkout_button": "المتابعة لإتمام الطلب",
+    "select_options_prompt": "يرجى تحديد اللون والمقاس لكل منتج قبل المتابعة."
+  },
+  "cart_item": {
+    "remove_label": "إزالة المنتج"
+  },
+  "search_modal": {
+    "placeholder": "ابحث عن المنتجات...",
+    "featured_title": "المنتجات المميزة",
+    "error_message": "فشل في جلب المنتجات. يرجى المحاولة مرة أخرى في وقت لاحق.",
+    "uncategorized": "غير مصنف",
+    "no_results": "لم يتم العثور على نتائج لـ \"{query}\"."
+  },
+  "about_page": {
+    "values": {
+      "badge": "قيمنا الأساسية",
+      "title": "المبادئ التي توجهنا",
+      "description": "تشكل قيمنا أساس ثقافتنا وتوجه كل قرار نتخذه. إنها لا تمثل فقط من نحن، بل ما نطمح أن نكون عليه كل يوم."
+    },
+    "story": {
+      "badge": "تاريخنا",
+      "title": "رحلتنا عبر الزمن",
+      "description": "من بداية متواضعة إلى ريادة في الصناعة، استكشف المحطات الرئيسية التي شكلت رحلتنا الرائعة من الابتكار والنمو."
+    },
+    "team": {
+      "badge": "فريقنا",
+      "title": "تعرف على قوتنا الإبداعية",
+      "description": "تعرف على الأفراد الشغوفين الذين يقودون نجاحنا. نحن مجموعة متنوعة من المفكرين والمبدعين والمبتكرين الذين يوحدهم التزامنا بالتميز."
+    },
+    "testimonials": {
+      "badge": "نبض دائم",
+      "title": "سلسلة ثقة لا تنقطع",
+      "description": "صوت مجتمعنا في حركة مستمرة. شهادة على القيمة المستمرة والدعم الثابت الذي نفخر بتقديمه."
+    }
+  },
+  "contact_page": {
+    "info_card": {
+      "email_title": "راسلنا عبر البريد الإلكتروني",
+      "phone_title": "اتصل بنا",
+      "address_title": "قم بزيارتنا",
+      "email_button": "أرسل بريدًا إلكترونيًا",
+      "phone_button": "اتصل الآن",
+      "address_button": "احصل على الاتجاهات"
+    },
+    "form_section": {
+      "title": "أرسل لنا رسالة",
+      "subtitle": "سنعاود الاتصال بك في أقرب وقت ممكن.",
+      "submit_button": "إرسال الرسالة",
+      "submitting_button": "جارٍ الإرسال..."
+    },
+    "faq_section": {
+      "title": "الأسئلة الشائعة",
+      "subtitle": "ابحث عن إجابات سريعة للأسئلة الشائعة حول منتجاتنا والشحن والخدمات.",
+      "loading": "جاري تحميل الأسئلة الشائعة..."
+    },
+    "map_fallback": {
+      "title": "موقعنا",
+      "button": "عرض على خرائط جوجل"
+    }
+  }
+}

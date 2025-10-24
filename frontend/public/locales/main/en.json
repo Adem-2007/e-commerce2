@@ -1,0 +1,236 @@
+{
+  "home": "Home",
+  "shop": "Shop",
+  "contact": "Contact",
+  "about": "About",
+  "dashboard": "Dashboard",
+  "menu": "Menu",
+  "explore": "Explore",
+  "newest_products_title": "THE NEWEST PRODUCTS",
+  "newest_products_subtitle": "Explore our latest collection of newly-released designs.",
+  "showcase_title": "The Designer's Showcase",
+  "showcase_subtitle": "A curated view of our latest designs, presented with composure.",
+  "buy_now": "Buy Now",
+  "add_to_cart": "Add to Cart",
+  "added": "Added!",
+  "aria_prev_product": "Previous Product",
+  "aria_next_product": "Next Product",
+  "error_no_items": "No new items to showcase at the moment.",
+  "error_unavailable": "Our Lookbook is currently unavailable.",
+  "error_empty": "Showcase is empty.",
+  "new_arrival": "NEW",
+  "add_to_favorites": "Add to Favorites",
+  "edit_product": "Edit Product",
+  "delete_product": "Delete Product",
+  "view_details": "View Details",
+  "category": "Category",
+  "gender": "Gender",
+  "height": "Height",
+  "materials": "Materials",
+  "colors": "Colors",
+  "product_sizes": "Sizes",
+  "explore_collection_title": "Explore Our Collection",
+  "explore_collection_subtitle": "Discover meticulously crafted pieces, designed for the modern individual.",
+  "error_load_essentials": "Could not load page essentials. Please try refreshing.",
+  "error_load_products": "Could not load products at this time. Please try again later.",
+  "empty_products_message": "No products found. Try adjusting your filters to find what you're looking for.",
+  "empty_products_filtered_message": "No products match your current filter combination.",
+  "filters": "Filters",
+  "clear": "Clear",
+  "done": "Done",
+  "gender_man": "Man",
+  "gender_female": "Female",
+  "gender_baby": "Baby",
+  "height_cm": "Height (cm)",
+  "min": "Min",
+  "max": "Max",
+  "price_range": "Price Range",
+  "price_min_label": "Min:",
+  "price_max_label": "Max:",
+  "apply": "Apply",
+  "applying": "Applying...",
+  "error_product_not_found": "Product not found. It might have been moved or deleted.",
+  "error_something_went_wrong": "Something Went Wrong",
+  "back_to_collection": "Back to Collection",
+  "view": "View",
+  "color_label": "Color",
+  "size_label": "Size",
+  "you_might_also_like": "You Might Also Like",
+  "close_esc": "Close (Esc)",
+  "previous_arrow": "Previous (Left Arrow)",
+  "next_arrow": "Next (Right Arrow)",
+  "auth_page": {
+    "loading_message": "Establishing Connection...",
+    "create_account_title": "Create Account",
+    "login_title": "Welcome Back",
+    "register_subtitle": "Set up the first administrator account.",
+    "login_subtitle": "Sign in to manage your store.",
+    "placeholders": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "password": "Password"
+    },
+    "buttons": {
+      "sign_in": "Sign In",
+      "create_account": "Create Account",
+      "forgot_password": "Forgot Password?",
+      "throttled": "Please Wait ({seconds}s)",
+      "sending": "Sending...",
+      "send_code": "Send Verification Code",
+      "back_to_login": "Back to Login"
+    },
+    "forgot_view": {
+      "title": "Reset Your Password",
+      "subtitle": "Enter your email. We'll send you a 6-digit code for verification."
+    },
+    "decorative": {
+      "title": "Welcome to",
+      "subtitle": "Step into the command center of your e-commerce universe. Manage, grow, and inspire."
+    },
+    "errors": {
+      "connect_failed": "Could not connect to the server.",
+      "throttled": "Too many attempts. Please wait {seconds} seconds."
+    }
+  },
+  "reset_password_page": {
+    "title": "Verify & Reset",
+    "subtitle_prefix": "A code has been sent to",
+    "subtitle_email_fallback": "your email",
+    "subtitle_suffix": ". Enter it below to reset your password.",
+    "placeholders": {
+      "code": "6-Digit Verification Code",
+      "new_password": "New Password",
+      "confirm_password": "Confirm New Password"
+    },
+    "buttons": {
+      "processing": "Processing...",
+      "reset": "Verify & Reset Password"
+    },
+    "messages": {
+      "success": "Password reset successfully! Redirecting to login..."
+    },
+    "errors": {
+      "passwords_no_match": "New passwords do not match.",
+      "password_too_short": "Password must be at least 6 characters long.",
+      "invalid_code": "Please enter a valid 6-digit code."
+    }
+  },
+  "buy_modal": {
+    "title": "Delivery Information",
+    "subtitle": "Please provide your details to finalize the order.",
+    "summary_panel": {
+      "items_in_cart": "{count} items in cart",
+      "uncategorized": "Uncategorized",
+      "subtotal": "Subtotal",
+      "delivery": "Delivery",
+      "total": "Total",
+      "delivery_partner": "DELIVERY PARTNER",
+      "select_option_placeholder": "Select an option",
+      "select_wilaya_placeholder": "Select a Wilaya",
+      "color": "Color",
+      "size": "Size",
+      "quantity": "Quantity"
+    },
+    "form": {
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email Address",
+      "phone1": "Phone Number",
+      "phone2": "Optional Phone",
+      "phone_validation_title": "Phone number must be exactly 10 digits.",
+      "wilaya": "Wilaya",
+      "wilaya_placeholder": "-- Select an available Wilaya --",
+      "municipality": "Municipality",
+      "municipality_placeholder": "-- Select a municipality --",
+      "courier": "Courier",
+      "courier_price_placeholder": "Select for options",
+      "delivery_option": "Delivery Option",
+      "delivery_option_home": "To your home",
+      "delivery_option_office": "To our office",
+      "address": "Full Address",
+      "address_placeholder": "e.g., Street, Building, Apartment",
+      "place_order_button": "Place Order",
+      "disabled_order_button": "Select a delivery option"
+    },
+    "confirm_modal": {
+      "title": "Confirm Your Order",
+      "text": "Please review your details. Once confirmed, your order will be placed and our team will prepare it for delivery.",
+      "cancel_button": "Cancel",
+      "confirm_button": "Confirm & Submit",
+      "submitting_button": "Submitting..."
+    },
+    "success_modal": {
+      "title": "Order Placed!",
+      "text": "Thank you! We have received your order and will contact you shortly to finalize the details."
+    }
+  },
+  "cart_page": {
+    "empty_title": "Your Cart is Empty",
+    "empty_subtitle": "It looks like you haven't added anything to your cart yet.",
+    "continue_shopping": "Continue Shopping",
+    "main_title": "Your Shopping Cart",
+    "item_count_one": "You have 1 item in your cart.",
+    "item_count_other": "You have {count} items in your cart.",
+    "summary_title": "Order Summary",
+    "total": "Total",
+    "checkout_button": "Proceed to Checkout",
+    "select_options_prompt": "Please select a color and size for each item before proceeding."
+  },
+  "cart_item": {
+    "remove_label": "Remove item"
+  },
+  "search_modal": {
+    "placeholder": "Search for products...",
+    "featured_title": "Featured Products",
+    "error_message": "Failed to fetch products. Please try again later.",
+    "uncategorized": "Uncategorized",
+    "no_results": "No results found for \"{query}\"."
+  },
+  "about_page": {
+    "values": {
+      "badge": "Our Core Values",
+      "title": "The Principles That Guide Us",
+      "description": "Our values form the bedrock of our culture and guide every decision we make. They represent not only who we are, but who we aspire to be each day."
+    },
+    "story": {
+      "badge": "Our History",
+      "title": "Our Journey Through Time",
+      "description": "From a humble beginning to an industry leader, explore the key milestones that have shaped our remarkable journey of innovation and growth."
+    },
+    "team": {
+      "badge": "Our Team",
+      "title": "Meet Our Creative Force",
+      "description": "Get to know the passionate individuals who drive our success. We are a diverse collective of thinkers, creators, and innovators united by our commitment to excellence."
+    },
+    "testimonials": {
+      "badge": "A Perpetual Pulse",
+      "title": "An Unbroken Chain of Trust",
+      "description": "The voice of our community in constant motion. A testament to the continuous value and unwavering support we are proud to provide."
+    }
+  },
+  "contact_page": {
+    "info_card": {
+      "email_title": "Email Us",
+      "phone_title": "Call Us",
+      "address_title": "Visit Us",
+      "email_button": "Send an Email",
+      "phone_button": "Call Now",
+      "address_button": "Get Directions"
+    },
+    "form_section": {
+      "title": "Send us a Message",
+      "subtitle": "We'll get back to you as soon as possible.",
+      "submit_button": "Send Message",
+      "submitting_button": "Sending..."
+    },
+    "faq_section": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find quick answers to common questions about our products, shipping, and services.",
+      "loading": "Loading FAQs..."
+    },
+    "map_fallback": {
+      "title": "Our Location",
+      "button": "View on Google Maps"
+    }
+  }
+}

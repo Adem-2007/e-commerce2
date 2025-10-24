@@ -1,0 +1,103 @@
+/* src/components/common/ConfirmationModal.css */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(16, 29, 66, 0.7);
+  display: grid;
+  place-items: center;
+  /* --- FIX: Increased z-index to ensure this modal appears above all others --- */
+  z-index: 150; 
+  backdrop-filter: blur(8px);
+}
+
+.confirmation-modal-container {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  font-family: 'Inter', sans-serif;
+}
+
+.modal-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  background: #FEE2E2; /* Red background for warning */
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 1rem;
+  border: 4px solid #FEF2F2;
+}
+
+.modal-icon {
+  color: #EF4444; /* Red icon */
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #101D42;
+  line-height: 1.2;
+}
+
+.modal-message {
+  font-size: 1rem;
+  color: #5A6782;
+  margin-top: 0.75rem;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cancel-button,
+.confirm-button {
+  flex: 1;
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cancel-button {
+  background-color: #F1F5F9;
+  color: #475569;
+  border: 1px solid #E2E8F0;
+}
+
+.cancel-button:hover:not(:disabled) {
+  background-color: #E2E8F0;
+  color: #1E293B;
+}
+
+.confirm-button {
+  background-color: #EF4444;
+  color: white;
+  box-shadow: 0 4px 15px -5px rgba(239, 68, 68, 0.6);
+}
+
+.confirm-button:hover:not(:disabled) {
+  background-color: #DC2626;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px -5px rgba(239, 68, 68, 0.8);
+}
+
+.confirm-button:disabled, .cancel-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

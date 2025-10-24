@@ -1,0 +1,197 @@
+/*
+  File: UserTestimonials.css
+  Design: A.I. Visionary - 20+ Years Experience
+  Concept: "The Aurora Wall" - An elegant, interactive testimonial experience for light UIs.
+*/
+
+:root {
+    /* A sophisticated, vibrant palette for the light theme */
+    --accent-color-1: #0ee953; /* sky-500 */
+    --accent-color-2: #6366f1; /* indigo-500 */
+    --accent-color-3: #a855f7; /* purple-500 */
+
+    --background-light: #f8fafc; /* slate-50 */
+    --card-bg: #ffffff;
+    --card-border-idle: #e2e8f0; /* slate-200 */
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    
+    --text-primary: #1e293b;   /* slate-800 */
+    --text-secondary: #64748b; /* slate-500 */
+    
+    --card-width: 360px;
+    --marquee-gap: 1.75rem;
+    --animation-duration: 70s;
+    --focus-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* --- Section & Edge Fading --- */
+.testimonial-kinetic-wall {
+    background-color: var(--background-light);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.kinetic-container {
+    perspective: 1500px;
+    transition: perspective 0.8s var(--focus-ease);
+}
+
+.kinetic-container:hover {
+    perspective: 2500px;
+}
+
+.marquee-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--marquee-gap);
+}
+
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    transition: transform 0.8s var(--focus-ease);
+}
+
+.marquee-top { transform: rotateX(6deg) rotateY(-10deg) rotateZ(2deg); }
+.marquee-bottom { transform: rotateX(-6deg) rotateY(-10deg) rotateZ(-2deg); }
+
+.kinetic-container:hover .marquee-top { transform: rotateX(3deg) rotateY(-5deg) rotateZ(1deg); }
+.kinetic-container:hover .marquee-bottom { transform: rotateX(-3deg) rotateY(-5deg) rotateZ(-1deg); }
+
+/* --- Marquee Tracks --- */
+.marquee-track-right,
+.marquee-track-left {
+    display: flex;
+    gap: var(--marquee-gap);
+    will-change: transform;
+    transition: animation-play-state 1s var(--focus-ease);
+}
+
+.kinetic-container:hover .marquee-track-right,
+.kinetic-container:hover .marquee-track-left {
+    animation-play-state: paused;
+}
+
+.marquee-track-right { animation: scrollRight var(--animation-duration) linear infinite; }
+.marquee-track-left { animation: scrollLeft var(--animation-duration) linear infinite; }
+
+/* --- The Card: The "Aurora" Effect --- */
+.testimonial-card-kinetic {
+    flex: 0 0 var(--card-width);
+    position: relative;
+    border-radius: 0.875rem; /* 14px */
+    box-shadow: var(--card-shadow);
+    /* Transition for focus/defocus effect */
+    transition: transform 0.6s var(--focus-ease),
+                opacity 0.8s var(--focus-ease),
+                filter 0.8s var(--focus-ease),
+                box-shadow 0.6s var(--focus-ease);
+}
+
+/* The content sits above the animated border */
+.card-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border-idle);
+    border-radius: inherit;
+    position: relative;
+    z-index: 2;
+    transition: border-color 0.6s var(--focus-ease);
+}
+
+/* The Aurora Border: An animated gradient pseudo-element */
+.card-aurora-border {
+    position: absolute;
+    inset: -1px; /* Sits just outside the content */
+    border-radius: inherit;
+    z-index: 1;
+    background-size: 200% 200%;
+    opacity: 0;
+    transition: opacity 0.6s var(--focus-ease);
+    animation: flow-gradient 5s ease infinite;
+}
+
+/* --- The Hover Interaction State --- */
+.kinetic-container:hover .testimonial-card-kinetic {
+    opacity: 0.6;
+    /* Desaturate and blur unfocused cards */
+    filter: grayscale(50%) blur(1px);
+}
+
+.kinetic-container:hover .testimonial-card-kinetic:hover {
+    opacity: 1;
+    filter: none;
+    transform: scale(1.08) translateY(-10px);
+    box-shadow: var(--card-shadow-hover);
+    z-index: 10;
+}
+
+/* On hover, fade the static border to transparent to reveal the aurora */
+.kinetic-container:hover .testimonial-card-kinetic:hover .card-content {
+    border-color: transparent;
+}
+
+/* Reveal the aurora border on hover */
+.kinetic-container:hover .testimonial-card-kinetic:hover .card-aurora-border {
+    opacity: 1;
+}
+
+/* --- Card Content Styling --- */
+.avatar {
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid var(--card-border-idle);
+    transition: border-color 0.6s var(--focus-ease);
+}
+
+.testimonial-card-kinetic:hover .avatar {
+    border-color: var(--accent-color-2);
+}
+
+.user-info { min-width: 0; }
+.user-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.comment-preview {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* --- Keyframe Animations --- */
+@keyframes scrollLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - (var(--marquee-gap) / 2))); }
+}
+
+@keyframes scrollRight {
+    from { transform: translateX(calc(-50% - (var(--marquee-gap) / 2))); }
+    to { transform: translateX(0); }
+}
+
+/* New animation for the Aurora Border */
+@keyframes flow-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    :root { --card-width: 280px; }
+    .kinetic-container, .kinetic-container:hover { perspective: none; }
+    .marquee-top, .marquee-bottom,
+    .kinetic-container:hover .marquee-top,
+    .kinetic-container:hover .marquee-bottom {
+        transform: none;
+    }
+}

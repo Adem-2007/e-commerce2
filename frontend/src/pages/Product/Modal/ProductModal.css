@@ -1,0 +1,121 @@
+/* src/pages/Product/Modal/ProductModal.css */
+
+.product-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(16, 29, 66, 0.5);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+    animation: fadeInOverlay 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInOverlay {
+    from { opacity: 0; backdrop-filter: blur(0px); }
+    to { opacity: 1; backdrop-filter: blur(8px); }
+}
+
+.product-modal-container {
+    background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 0 15px rgba(59, 130, 246, 0.1);
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: zoomIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.product-modal-close-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #F3F4F6;
+    border-radius: 50%;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #6B7280;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.product-modal-close-button:hover {
+    background: #EF4444; /* red-500 */
+    color: white;
+    transform: rotate(180deg) scale(1.1);
+}
+
+.product-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 32px;
+    border-bottom: 1px solid #E5E7EB;
+    flex-shrink: 0;
+}
+
+.product-modal-title {
+    font-size: 1.75rem; /* 28px */
+    font-weight: 600;
+    color: #101D42;
+}
+
+.product-modal-content {
+    padding: 32px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+/* This grid will hold our animated cards */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 28px;
+}
+
+/* Wrapper for handling the staggered animation */
+.product-card-wrapper {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    animation: cardEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cardEnter {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.empty-state-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInOverlay 0.8s 0.3s ease-out forwards;
+}

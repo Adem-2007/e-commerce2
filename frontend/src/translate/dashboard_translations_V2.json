@@ -1,0 +1,728 @@
+{
+  "en": {
+    "navigation": {
+      "overview": "Overview",
+      "orders": "Orders",
+      "categories_products": "Products & Categories",
+      "hero_control": "Home Control",
+      "info_control": "Info Control",
+      "footer_control": "Footer Control",
+      "logo_control": "Brand Identity",
+      "delivery_costs": "Delivery Costs",
+      "social_media": "Social Media",
+      "user_manage": "User Management",
+      "messages": "Messages"
+    },
+    "messages": "Messages",
+    "social_media_page": {
+      "header_title": "Social Media & Integrations",
+      "header_subtitle": "Connect and manage your marketing, social, and data assets.",
+      "tabs": {
+        "facebook": "Facebook",
+        "instagram": "Instagram",
+        "tiktok": "TikTok",
+        "snapchat": "Snapchat",
+        "google_sheets": "Google Sheets",
+        "whatsapp": "WhatsApp",
+        "emails": "Emails"
+      },
+      "pixel_panels": {
+        "title": "{platformName} Pixel Management",
+        "subtitle": "Manage and track all your {platformName} pixels in one place.",
+        "add_button": "Add New Pixel",
+        "add_button_snap": "Add Snap Pixel",
+        "stats_total": "Total Pixels",
+        "stats_active": "Active Pixels",
+        "stats_inactive": "Inactive Pixels",
+        "list_header": "Connected Pixels",
+        "table_name": "Name",
+        "table_id": "Pixel ID",
+        "table_status": "Status",
+        "table_date": "Date Added",
+        "table_actions": "Actions",
+        "status_active": "Active",
+        "status_inactive": "Inactive"
+      },
+      "add_pixel_modal": {
+        "back_button": "Back",
+        "title": "Add a new {platformName} Pixel",
+        "name_label": "Pixel Name",
+        "name_placeholder": "e.g., Main {platformName} Pixel",
+        "id_label": "Pixel ID",
+        "id_placeholder": "Enter your Pixel ID",
+        "token_label_optional": "{tokenName} (Optional)",
+        "token_placeholder": "Enter your {tokenName}",
+        "recommendation": "Recommended for best ad campaign results.",
+        "activate_label": "Activate this pixel on your store?",
+        "add_button": "ADD",
+        "token_names": {
+          "facebook": "Conversion API Access TOKEN",
+          "snapchat": "Marketing API Token",
+          "tiktok": "Events API Access Token",
+          "default": "API Access TOKEN"
+        }
+      }
+    },
+    "footer_control_page": {
+      "fetch_error": "Failed to fetch footer data. Please refresh.",
+      "auth_error": "Authentication error. Please log in again.",
+      "save_success": "Footer configuration saved!",
+      "save_error_default": "Error: Could not save changes.",
+      "saving_button": "Saving...",
+      "save_button": "Save Changes",
+      "header_breadcrumb": "Overview",
+      "header_title": "Footer Control",
+      "link_sections_title": "Link Sections",
+      "social_links_title": "Social Media Links",
+      "add_link_section_button": "Add Link Section",
+      "new_section_placeholder": "Enter title for new section...",
+      "add_section_confirm_button": "Add Section",
+      "section_title_placeholder": "Section Title",
+      "add_link_button": "Add Link",
+      "link_title_placeholder": "Link Title",
+      "link_href_placeholder": "e.g., contact",
+      "add_social_link_button": "Add Social Link",
+      "social_href_placeholder": "https://...",
+      "social_icon_labels": {
+        "twitter": "Twitter",
+        "facebook": "Facebook",
+        "instagram": "Instagram",
+        "linkedin": "LinkedIn",
+        "github": "GitHub",
+        "dribbble": "Dribbble",
+        "tiktok": "TikTok",
+        "whatsapp": "WhatsApp"
+      }
+    },
+    "logo_control": {
+      "header_title": "Brand Identity",
+      "header_subtitle": "Manage your site's logo and name to reflect your brand's essence.",
+      "card_title_logo": "Logo Image",
+      "card_title_config": "Configuration",
+      "upload_prompt_text": "No Logo Available",
+      "upload_prompt_subtext": "Click to upload",
+      "upload_overlay_change": "Change Image",
+      "upload_overlay_upload": "Upload Image",
+      "uploader_hint": "PNG, JPG, or SVG. Recommended size: 200x200px.",
+      "brand_name_label": "Brand Name",
+      "brand_name_placeholder": "e.g., Aura",
+      "save_button": "Save Changes",
+      "saving_button": "Saving Changes...",
+      "fetch_error": "Failed to fetch logo data. Please refresh the page.",
+      "save_error_default": "An error occurred while saving."
+    },
+    "delivery_costs_page": {
+      "header": {
+        "title": "Delivery Logistics Hub",
+        "subtitle": "Manage delivery prices and couriers for all 58 wilayas.",
+        "saving_button": "Saving...",
+        "save_button": "Save Changes"
+      },
+      "messages": {
+        "save_success": "Delivery costs updated successfully!",
+        "fetch_error": "Failed to fetch costs.",
+        "save_error": "Failed to save costs."
+      },
+      "wilaya_pod": {
+        "not_available": "N/A",
+        "no_price": "No price set",
+        "starts_at": "Starts at {price} DZD",
+        "no_active_couriers": "No Active Couriers",
+        "click_to_manage": "Click 'Manage' to add one.",
+        "delivery_home_title": "Delivery to Home",
+        "delivery_office_title": "Delivery to Office",
+        "more_couriers": "+{count} more courier(s)",
+        "manage_button": "Manage Couriers"
+      },
+      "edit_panel": {
+        "title": "Manage Couriers",
+        "unnamed_company": "Unnamed Company",
+        "add_button": "Add New Courier",
+        "apply_button": "Apply & Close",
+        "delete_modal_title": "Confirm Courier Deletion",
+        "delete_modal_body": "Are you sure you want to remove this courier? All of its details for this Wilaya will be permanently deleted."
+      },
+      "company_form": {
+        "validation": {
+          "name_required": "Company name is required.",
+          "logo_required": "Company logo is required.",
+          "price_required": "A valid positive price is required."
+        },
+        "uploader": {
+          "prompt": "Drop/Click",
+          "label": "Company Logo",
+          "hint": "Click or drag a file here. Optimized to 100x100.",
+          "remove_button": "Remove"
+        },
+        "name_label": "Company Name",
+        "price_home_label": "Delivery to your Home",
+        "price_office_label": "Delivery to our Office",
+        "price_placeholder_home": "e.g., 600",
+        "price_placeholder_office": "e.g., 300",
+        "active_label": "This courier is active for this Wilaya",
+        "cancel_button": "Cancel",
+        "save_button": "Save Company",
+        "delete_logo_modal_title": "Confirm Logo Removal",
+        "delete_logo_modal_body": "Are you sure you want to remove the company logo? This action cannot be reversed, but you can upload a new one later."
+      },
+      "confirm_modal": {
+        "default_title": "Are you sure?",
+        "default_body": "This action cannot be undone. Please confirm you want to proceed.",
+        "cancel_button": "Cancel",
+        "confirm_button_delete": "Yes, Remove It"
+      }
+    },
+    "user_management": {
+      "header_title": "User Management",
+      "header_subtitle": "Create, view, and manage user accounts with clarity and precision.",
+      "tabs": {
+        "manage_users": "Manage Users",
+        "add_new_user": "Add New User"
+      },
+      "common": {
+        "cancel": "Cancel",
+        "save_changes": "Save Changes"
+      },
+      "roles": {
+        "pager": "Pager",
+        "creator": "Creator",
+        "admin": "Admin"
+      },
+      "user_list": {
+        "search_placeholder": "Search by name or email...",
+        "no_users_found": "No users found.",
+        "actions": {
+          "manage_permissions": "Manage Permissions",
+          "edit_details": "Edit Details",
+          "delete_user": "Delete User"
+        },
+        "delete_confirm_message": "Are you sure you want to permanently delete this user?",
+        "errors": {
+          "fetch_failed": "Failed to fetch users.",
+          "delete_failed": "Error: {message}"
+        }
+      },
+      "user_form": {
+        "title": "Create New User",
+        "subtitle": "Select a role and enter credentials for the new account.",
+        "labels": {
+          "full_name": "Full Name",
+          "email": "Email Address",
+          "password": "Password"
+        },
+        "assign_role_title": "Assign Role",
+        "role_descs": {
+          "pager": "View-only",
+          "creator": "Content editing",
+          "admin": "Full control"
+        },
+        "messages": {
+          "success": "User created successfully!",
+          "error_default": "Failed to create user."
+        },
+        "submit_button": "Create Account"
+      },
+      "edit_modal": {
+        "title": "Edit User",
+        "subtitle": "Updating account for",
+        "labels": {
+          "password_placeholder": "Leave blank to keep current password"
+        },
+        "messages": {
+          "error_default": "Failed to update user."
+        }
+      },
+      "permissions_modal": {
+        "title": "Manage Permissions",
+        "subtitle": "Editing access for",
+        "messages": {
+          "error_default": "Failed to update permissions."
+        }
+      }
+    }
+  },
+  "fr": {
+    "navigation": {
+      "overview": "Aperçu",
+      "orders": "Commandes",
+      "categories_products": "Produits & Catégories",
+      "hero_control": "Contrôle d'accueil",
+      "info_control": "Contrôle d'infos",
+      "footer_control": "Contrôle du pied de page",
+      "logo_control": "Identité de marque",
+      "delivery_costs": "Frais de livraison",
+      "social_media": "Médias sociaux",
+      "user_manage": "Gestion des utilisateurs",
+      "messages": "Messages"
+    },
+    "messages": "Messages",
+    "social_media_page": {
+      "header_title": "Réseaux Sociaux & Intégrations",
+      "header_subtitle": "Connectez et gérez vos actifs marketing, sociaux et de données.",
+      "tabs": {
+        "facebook": "Facebook",
+        "instagram": "Instagram",
+        "tiktok": "TikTok",
+        "snapchat": "Snapchat",
+        "google_sheets": "Google Sheets",
+        "whatsapp": "WhatsApp",
+        "emails": "Emails"
+      },
+      "pixel_panels": {
+        "title": "Gestion des Pixels {platformName}",
+        "subtitle": "Gérez et suivez tous vos pixels {platformName} en un seul endroit.",
+        "add_button": "Ajouter un Nouveau Pixel",
+        "add_button_snap": "Ajouter un Pixel Snap",
+        "stats_total": "Total des Pixels",
+        "stats_active": "Pixels Actifs",
+        "stats_inactive": "Pixels Inactifs",
+        "list_header": "Pixels Connectés",
+        "table_name": "Nom",
+        "table_id": "ID du Pixel",
+        "table_status": "Statut",
+        "table_date": "Date d'Ajout",
+        "table_actions": "Actions",
+        "status_active": "Actif",
+        "status_inactive": "Inactif"
+      },
+      "add_pixel_modal": {
+        "back_button": "Retour",
+        "title": "Ajouter un nouveau Pixel {platformName}",
+        "name_label": "Nom du Pixel",
+        "name_placeholder": "ex: Pixel {platformName} Principal",
+        "id_label": "ID du Pixel",
+        "id_placeholder": "Entrez votre ID de Pixel",
+        "token_label_optional": "{tokenName} (Optionnel)",
+        "token_placeholder": "Entrez votre {tokenName}",
+        "recommendation": "Recommandé pour de meilleurs résultats de campagne publicitaire.",
+        "activate_label": "Activer ce pixel sur votre boutique ?",
+        "add_button": "AJOUTER",
+        "token_names": {
+          "facebook": "TOKEN d'Accès API de Conversions",
+          "snapchat": "Token API Marketing",
+          "tiktok": "Token d'Accès API Events",
+          "default": "TOKEN d'Accès API"
+        }
+      }
+    },
+    "footer_control_page": {
+      "fetch_error": "Échec de la récupération des données du pied de page. Veuillez rafraîchir.",
+      "auth_error": "Erreur d'authentification. Veuillez vous reconnecter.",
+      "save_success": "Configuration du pied de page enregistrée !",
+      "save_error_default": "Erreur : Impossible d'enregistrer les modifications.",
+      "saving_button": "Enregistrement...",
+      "save_button": "Enregistrer",
+      "header_breadcrumb": "Aperçu",
+      "header_title": "Contrôle du pied de page",
+      "link_sections_title": "Sections de Liens",
+      "social_links_title": "Liens des Médias Sociaux",
+      "add_link_section_button": "Ajouter une Section de Liens",
+      "new_section_placeholder": "Entrez le titre de la nouvelle section...",
+      "add_section_confirm_button": "Ajouter la Section",
+      "section_title_placeholder": "Titre de la Section",
+      "add_link_button": "Ajouter un Lien",
+      "link_title_placeholder": "Titre du Lien",
+      "link_href_placeholder": "ex: contact",
+      "add_social_link_button": "Ajouter un Lien Social",
+      "social_href_placeholder": "https://...",
+      "social_icon_labels": {
+        "twitter": "Twitter",
+        "facebook": "Facebook",
+        "instagram": "Instagram",
+        "linkedin": "LinkedIn",
+        "github": "GitHub",
+        "dribbble": "Dribbble",
+        "tiktok": "TikTok",
+        "whatsapp": "WhatsApp"
+      }
+    },
+    "logo_control": {
+      "header_title": "Identité de Marque",
+      "header_subtitle": "Gérez le logo et le nom de votre site pour refléter l'essence de votre marque.",
+      "card_title_logo": "Image du Logo",
+      "card_title_config": "Configuration",
+      "upload_prompt_text": "Aucun Logo Disponible",
+      "upload_prompt_subtext": "Cliquez pour télécharger",
+      "upload_overlay_change": "Changer l'Image",
+      "upload_overlay_upload": "Télécharger l'Image",
+      "uploader_hint": "PNG, JPG, ou SVG. Taille recommandée : 200x200px.",
+      "brand_name_label": "Nom de la Marque",
+      "brand_name_placeholder": "ex: Aura",
+      "save_button": "Enregistrer",
+      "saving_button": "Enregistrement...",
+      "fetch_error": "Échec de la récupération des données du logo. Veuillez rafraîchir la page.",
+      "save_error_default": "Une erreur s'est produite lors de l'enregistrement."
+    },
+    "delivery_costs_page": {
+      "header": {
+        "title": "Centre Logistique de Livraison",
+        "subtitle": "Gérez les prix de livraison et les transporteurs pour les 58 wilayas.",
+        "saving_button": "Enregistrement...",
+        "save_button": "Enregistrer"
+      },
+      "messages": {
+        "save_success": "Frais de livraison mis à jour avec succès !",
+        "fetch_error": "Échec de la récupération des frais.",
+        "save_error": "Échec de l'enregistrement des frais."
+      },
+      "wilaya_pod": {
+        "not_available": "N/D",
+        "no_price": "Aucun prix défini",
+        "starts_at": "À partir de {price} DZD",
+        "no_active_couriers": "Aucun Transporteur Actif",
+        "click_to_manage": "Cliquez sur 'Gérer' pour en ajouter un.",
+        "delivery_home_title": "Livraison à domicile",
+        "delivery_office_title": "Livraison au bureau",
+        "more_couriers": "+{count} autre(s) transporteur(s)",
+        "manage_button": "Gérer les Transporteurs"
+      },
+      "edit_panel": {
+        "title": "Gérer les Transporteurs",
+        "unnamed_company": "Société sans nom",
+        "add_button": "Ajouter un Transporteur",
+        "apply_button": "Appliquer et Fermer",
+        "delete_modal_title": "Confirmer la Suppression",
+        "delete_modal_body": "Êtes-vous sûr de vouloir supprimer ce transporteur ? Tous ses détails pour cette Wilaya seront définitivement supprimés."
+      },
+      "company_form": {
+        "validation": {
+          "name_required": "Le nom de la société est requis.",
+          "logo_required": "Le logo de la société est requis.",
+          "price_required": "Un prix positif valide est requis."
+        },
+        "uploader": {
+          "prompt": "Déposer/Cliquer",
+          "label": "Logo de la Société",
+          "hint": "Cliquez ou glissez un fichier ici. Optimisé à 100x100.",
+          "remove_button": "Retirer"
+        },
+        "name_label": "Nom de la Société",
+        "price_home_label": "Livraison à votre domicile",
+        "price_office_label": "Livraison à notre bureau",
+        "price_placeholder_home": "ex: 600",
+        "price_placeholder_office": "ex: 300",
+        "active_label": "Ce transporteur est actif pour cette Wilaya",
+        "cancel_button": "Annuler",
+        "save_button": "Enregistrer la Société",
+        "delete_logo_modal_title": "Confirmer la Suppression du Logo",
+        "delete_logo_modal_body": "Êtes-vous sûr de vouloir supprimer le logo ? Cette action est irréversible, mais vous pourrez en télécharger un nouveau plus tard."
+      },
+      "confirm_modal": {
+        "default_title": "Êtes-vous sûr ?",
+        "default_body": "Cette action est irréversible. Veuillez confirmer que vous souhaitez continuer.",
+        "cancel_button": "Annuler",
+        "confirm_button_delete": "Oui, Supprimer"
+      }
+    },
+    "user_management": {
+      "header_title": "Gestion des Utilisateurs",
+      "header_subtitle": "Créez, affichez et gérez les comptes utilisateurs avec clarté et précision.",
+      "tabs": {
+        "manage_users": "Gérer les Utilisateurs",
+        "add_new_user": "Ajouter un Utilisateur"
+      },
+      "common": {
+        "cancel": "Annuler",
+        "save_changes": "Enregistrer"
+      },
+      "roles": {
+        "pager": "Pager",
+        "creator": "Créateur",
+        "admin": "Admin"
+      },
+      "user_list": {
+        "search_placeholder": "Rechercher par nom ou e-mail...",
+        "no_users_found": "Aucun utilisateur trouvé.",
+        "actions": {
+          "manage_permissions": "Gérer les Permissions",
+          "edit_details": "Modifier les Détails",
+          "delete_user": "Supprimer l'Utilisateur"
+        },
+        "delete_confirm_message": "Êtes-vous sûr de vouloir supprimer définitivement cet utilisateur ?",
+        "errors": {
+          "fetch_failed": "Échec de la récupération des utilisateurs.",
+          "delete_failed": "Erreur : {message}"
+        }
+      },
+      "user_form": {
+        "title": "Créer un Nouvel Utilisateur",
+        "subtitle": "Sélectionnez un rôle et entrez les identifiants pour le nouveau compte.",
+        "labels": {
+          "full_name": "Nom Complet",
+          "email": "Adresse E-mail",
+          "password": "Mot de passe"
+        },
+        "assign_role_title": "Attribuer un Rôle",
+        "role_descs": {
+          "pager": "Lecture seule",
+          "creator": "Édition de contenu",
+          "admin": "Contrôle total"
+        },
+        "messages": {
+          "success": "Utilisateur créé avec succès !",
+          "error_default": "Échec de la création de l'utilisateur."
+        },
+        "submit_button": "Créer le Compte"
+      },
+      "edit_modal": {
+        "title": "Modifier l'Utilisateur",
+        "subtitle": "Mise à jour du compte pour",
+        "labels": {
+          "password_placeholder": "Laisser vide pour garder le mot de passe actuel"
+        },
+        "messages": {
+          "error_default": "Échec de la mise à jour de l'utilisateur."
+        }
+      },
+      "permissions_modal": {
+        "title": "Gérer les Permissions",
+        "subtitle": "Modification de l'accès pour",
+        "messages": {
+          "error_default": "Échec de la mise à jour des permissions."
+        }
+      }
+    }
+  },
+  "ar": {
+    "navigation": {
+      "overview": "نظرة عامة",
+      "orders": "الطلبات",
+      "categories_products": "المنتجات والفئات",
+      "hero_control": "التحكم بالرئيسية",
+      "info_control": "التحكم بالمعلومات",
+      "footer_control": "التحكم بالتذييل",
+      "logo_control": "هوية العلامة التجارية",
+      "delivery_costs": "تكاليف التوصيل",
+      "social_media": "وسائل التواصل",
+      "user_manage": "إدارة المستخدمين",
+      "messages": "الرسائل"
+    },
+    "messages": "الرسائل",
+    "social_media_page": {
+      "header_title": "وسائل التواصل الاجتماعي والتكاملات",
+      "header_subtitle": "ربط وإدارة أصولك التسويقية والاجتماعية والبيانات.",
+      "tabs": {
+        "facebook": "فيسبوك",
+        "instagram": "انستغرام",
+        "tiktok": "تيك توك",
+        "snapchat": "سناب شات",
+        "google_sheets": "جداول بيانات جوجل",
+        "whatsapp": "واتساب",
+        "emails": "البريد الإلكتروني"
+      },
+      "pixel_panels": {
+        "title": "إدارة بكسل {platformName}",
+        "subtitle": "إدارة وتتبع جميع وحدات بكسل {platformName} الخاصة بك في مكان واحد.",
+        "add_button": "إضافة بكسل جديد",
+        "add_button_snap": "إضافة بكسل سناب",
+        "stats_total": "إجمالي وحدات البكسل",
+        "stats_active": "البكسلات النشطة",
+        "stats_inactive": "البكسلات غير النشطة",
+        "list_header": "وحدات البكسل المتصلة",
+        "table_name": "الاسم",
+        "table_id": "معرف البكسل",
+        "table_status": "الحالة",
+        "table_date": "تاريخ الإضافة",
+        "table_actions": "الإجراءات",
+        "status_active": "نشط",
+        "status_inactive": "غير نشط"
+      },
+      "add_pixel_modal": {
+        "back_button": "رجوع",
+        "title": "إضافة بكسل {platformName} جديد",
+        "name_label": "اسم البكسل",
+        "name_placeholder": "مثال: بكسل {platformName} الرئيسي",
+        "id_label": "معرف البكسل",
+        "id_placeholder": "أدخل معرف البكسل الخاص بك",
+        "token_label_optional": "{tokenName} (اختياري)",
+        "token_placeholder": "أدخل {tokenName} الخاص بك",
+        "recommendation": "موصى به للحصول على أفضل نتائج الحملات الإعلانية.",
+        "activate_label": "تفعيل هذا البكسل على متجرك؟",
+        "add_button": "إضافة",
+        "token_names": {
+          "facebook": "رمز الوصول لواجهة برمجة تطبيقات التحويلات",
+          "snapchat": "رمز واجهة برمجة تطبيقات التسويق",
+          "tiktok": "رمز الوصول لواجهة برمجة تطبيقات الأحداث",
+          "default": "رمز الوصول لواجهة برمجة التطبيقات"
+        }
+      }
+    },
+    "footer_control_page": {
+      "fetch_error": "فشل في جلب بيانات التذييل. يرجى تحديث الصفحة.",
+      "auth_error": "خطأ في المصادقة. يرجى تسجيل الدخول مرة أخرى.",
+      "save_success": "تم حفظ إعدادات التذييل بنجاح!",
+      "save_error_default": "خطأ: تعذر حفظ التغييرات.",
+      "saving_button": "جارٍ الحفظ...",
+      "save_button": "حفظ التغييرات",
+      "header_breadcrumb": "نظرة عامة",
+      "header_title": "التحكم بالتذييل",
+      "link_sections_title": "أقسام الروابط",
+      "social_links_title": "روابط التواصل الاجتماعي",
+      "add_link_section_button": "إضافة قسم روابط",
+      "new_section_placeholder": "أدخل عنوانًا للقسم الجديد...",
+      "add_section_confirm_button": "إضافة القسم",
+      "section_title_placeholder": "عنوان القسم",
+      "add_link_button": "إضافة رابط",
+      "link_title_placeholder": "عنوان الرابط",
+      "link_href_placeholder": "مثال: contact",
+      "add_social_link_button": "إضافة رابط تواصل اجتماعي",
+      "social_href_placeholder": "https://...",
+      "social_icon_labels": {
+        "twitter": "تويتر",
+        "facebook": "فيسبوك",
+        "instagram": "انستغرام",
+        "linkedin": "لينكد إن",
+        "github": "جيت هب",
+        "dribbble": "دريبل",
+        "tiktok": "تيك توك",
+        "whatsapp": "واتساب"
+      }
+    },
+    "logo_control": {
+      "header_title": "هوية العلامة التجارية",
+      "header_subtitle": "أدر شعار واسم موقعك ليعكس جوهر علامتك التجارية.",
+      "card_title_logo": "صورة الشعار",
+      "card_title_config": "الإعدادات",
+      "upload_prompt_text": "لا يتوفر شعار",
+      "upload_prompt_subtext": "انقر للتحميل",
+      "upload_overlay_change": "تغيير الصورة",
+      "upload_overlay_upload": "تحميل صورة",
+      "uploader_hint": "PNG, JPG, أو SVG. الحجم الموصى به: 200x200 بكسل.",
+      "brand_name_label": "اسم العلامة التجارية",
+      "brand_name_placeholder": "مثال: Aura",
+      "save_button": "حفظ التغييرات",
+      "saving_button": "جارٍ الحفظ...",
+      "fetch_error": "فشل في جلب بيانات الشعار. يرجى تحديث الصفحة.",
+      "save_error_default": "حدث خطأ أثناء الحفظ."
+    },
+    "delivery_costs_page": {
+      "header": {
+        "title": "مركز لوجستيات التوصيل",
+        "subtitle": "إدارة أسعار وشركات التوصيل لجميع الولايات الـ 58.",
+        "saving_button": "جارٍ الحفظ...",
+        "save_button": "حفظ التغييرات"
+      },
+      "messages": {
+        "save_success": "تم تحديث تكاليف التوصيل بنجاح!",
+        "fetch_error": "فشل في جلب التكاليف.",
+        "save_error": "فشل في حفظ التكاليف."
+      },
+      "wilaya_pod": {
+        "not_available": "غير متاح",
+        "no_price": "لا يوجد سعر",
+        "starts_at": "يبدأ من {price} د.ج",
+        "no_active_couriers": "لا توجد شركات توصيل نشطة",
+        "click_to_manage": "انقر 'إدارة' لإضافة واحدة.",
+        "delivery_home_title": "التوصيل إلى المنزل",
+        "delivery_office_title": "التوصيل إلى المكتب",
+        "more_couriers": "+{count} شركات توصيل إضافية",
+        "manage_button": "إدارة الشركات"
+      },
+      "edit_panel": {
+        "title": "إدارة شركات التوصيل",
+        "unnamed_company": "شركة غير مسماة",
+        "add_button": "إضافة شركة توصيل جديدة",
+        "apply_button": "تطبيق وإغلاق",
+        "delete_modal_title": "تأكيد حذف شركة التوصيل",
+        "delete_modal_body": "هل أنت متأكد من أنك تريد إزالة شركة التوصيل هذه؟ سيتم حذف جميع تفاصيلها لهذه الولاية بشكل دائم."
+      },
+      "company_form": {
+        "validation": {
+          "name_required": "اسم الشركة مطلوب.",
+          "logo_required": "شعار الشركة مطلوب.",
+          "price_required": "مطلوب سعر إيجابي صالح."
+        },
+        "uploader": {
+          "prompt": "اسحب/انقر",
+          "label": "شعار الشركة",
+          "hint": "انقر أو اسحب ملفًا إلى هنا. الحجم الأمثل 100x100.",
+          "remove_button": "إزالة"
+        },
+        "name_label": "اسم الشركة",
+        "price_home_label": "التوصيل إلى منزلك",
+        "price_office_label": "التوصيل إلى مكتبنا",
+        "price_placeholder_home": "مثال: 600",
+        "price_placeholder_office": "مثال: 300",
+        "active_label": "شركة التوصيل هذه نشطة لهذه الولاية",
+        "cancel_button": "إلغاء",
+        "save_button": "حفظ الشركة",
+        "delete_logo_modal_title": "تأكيد إزالة الشعار",
+        "delete_logo_modal_body": "هل أنت متأكد من أنك تريد إزالة شعار الشركة؟ لا يمكن التراجع عن هذا الإجراء، ولكن يمكنك تحميل شعار جديد لاحقًا."
+      },
+      "confirm_modal": {
+        "default_title": "هل أنت متأكد؟",
+        "default_body": "لا يمكن التراجع عن هذا الإجراء. يرجى التأكيد على رغبتك في المتابعة.",
+        "cancel_button": "إلغاء",
+        "confirm_button_delete": "نعم، قم بالإزالة"
+      }
+    },
+    "user_management": {
+      "header_title": "إدارة المستخدمين",
+      "header_subtitle": "أنشئ واعرض وأدر حسابات المستخدمين بوضوح ودقة.",
+      "tabs": {
+        "manage_users": "إدارة المستخدمين",
+        "add_new_user": "إضافة مستخدم جديد"
+      },
+      "common": {
+        "cancel": "إلغاء",
+        "save_changes": "حفظ التغييرات"
+      },
+      "roles": {
+        "pager": "بيجر",
+        "creator": "منشئ",
+        "admin": "مدير"
+      },
+      "user_list": {
+        "search_placeholder": "البحث بالاسم أو البريد الإلكتروني...",
+        "no_users_found": "لم يتم العثور على مستخدمين.",
+        "actions": {
+          "manage_permissions": "إدارة الأذونات",
+          "edit_details": "تعديل التفاصيل",
+          "delete_user": "حذف المستخدم"
+        },
+        "delete_confirm_message": "هل أنت متأكد من رغبتك في حذف هذا المستخدم بشكل دائم؟",
+        "errors": {
+          "fetch_failed": "فشل في جلب المستخدمين.",
+          "delete_failed": "خطأ: {message}"
+        }
+      },
+      "user_form": {
+        "title": "إنشاء مستخدم جديد",
+        "subtitle": "اختر دورًا وأدخل بيانات الاعتماد للحساب الجديد.",
+        "labels": {
+          "full_name": "الاسم الكامل",
+          "email": "البريد الإلكتروني",
+          "password": "كلمة المرور"
+        },
+        "assign_role_title": "تعيين دور",
+        "role_descs": {
+          "pager": "عرض فقط",
+          "creator": "تعديل المحتوى",
+          "admin": "تحكم كامل"
+        },
+        "messages": {
+          "success": "تم إنشاء المستخدم بنجاح!",
+          "error_default": "فشل في إنشاء المستخدم."
+        },
+        "submit_button": "إنشاء الحساب"
+      },
+      "edit_modal": {
+        "title": "تعديل المستخدم",
+        "subtitle": "تحديث الحساب لـ",
+        "labels": {
+          "password_placeholder": "اتركه فارغًا للحفاظ على كلمة المرور الحالية"
+        },
+        "messages": {
+          "error_default": "فشل في تحديث المستخدم."
+        }
+      },
+      "permissions_modal": {
+        "title": "إدارة الأذونات",
+        "subtitle": "تعديل الوصول لـ",
+        "messages": {
+          "error_default": "فشل في تحديث الأذونات."
+        }
+      }
+    }
+  }
+}

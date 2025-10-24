@@ -1,0 +1,236 @@
+{
+  "home": "Accueil",
+  "shop": "Boutique",
+  "contact": "Contact",
+  "about": "À propos",
+  "dashboard": "Tableau de bord",
+  "menu": "Menu",
+  "explore": "Explorer",
+  "newest_products_title": "LES NOUVEAUTÉS",
+  "newest_products_subtitle": "Découvrez notre dernière collection de designs fraîchement sortis.",
+  "showcase_title": "La Vitrine du Créateur",
+  "showcase_subtitle": "Une vue organisée de nos dernières créations, présentées avec sérénité.",
+  "buy_now": "Acheter maintenant",
+  "add_to_cart": "Ajouter au panier",
+  "added": "Ajouté !",
+  "aria_prev_product": "Produit précédent",
+  "aria_next_product": "Produit suivant",
+  "error_no_items": "Aucun nouvel article à présenter pour le moment.",
+  "error_unavailable": "Notre Lookbook est actuellement indisponible.",
+  "error_empty": "La vitrine est vide.",
+  "new_arrival": "NOUVEAU",
+  "add_to_favorites": "Ajouter aux favoris",
+  "edit_product": "Modifier le produit",
+  "delete_product": "Supprimer le produit",
+  "view_details": "Voir les détails",
+  "category": "Catégorie",
+  "gender": "Genre",
+  "height": "Taille",
+  "materials": "Matériaux",
+  "colors": "Couleurs",
+  "product_sizes": "Tailles disponibles",
+  "explore_collection_title": "Découvrez Notre Collection",
+  "explore_collection_subtitle": "Découvrez des pièces méticuleusement conçues pour l'individu moderne.",
+  "error_load_essentials": "Impossible de charger les éléments essentiels de la page. Veuillez essayer de rafraîchir.",
+  "error_load_products": "Impossible de charger les produits pour le moment. Veuillez réessayer plus tard.",
+  "empty_products_message": "Aucun produit trouvé. Essayez d'ajuster vos filtres pour trouver ce que vous cherchez.",
+  "empty_products_filtered_message": "Aucun produit ne correspond à votre combinaison de filtres actuelle.",
+  "filters": "Filtres",
+  "clear": "Effacer",
+  "done": "Terminé",
+  "gender_man": "Homme",
+  "gender_female": "Femme",
+  "gender_baby": "Bébé",
+  "height_cm": "Taille (cm)",
+  "min": "Min",
+  "max": "Max",
+  "price_range": "Fourchette de prix",
+  "price_min_label": "Min:",
+  "price_max_label": "Max:",
+  "apply": "Appliquer",
+  "applying": "Application...",
+  "error_product_not_found": "Produit non trouvé. Il a peut-être été déplacé ou supprimé.",
+  "error_something_went_wrong": "Une erreur est survenue",
+  "back_to_collection": "Retour à la collection",
+  "view": "Voir",
+  "color_label": "Couleur",
+  "size_label": "Taille",
+  "you_might_also_like": "Vous pourriez aussi aimer",
+  "close_esc": "Fermer (Échap)",
+  "previous_arrow": "Précédent (Flèche gauche)",
+  "next_arrow": "Suivant (Flèche droite)",
+  "auth_page": {
+    "loading_message": "Établissement de la connexion...",
+    "create_account_title": "Créer un Compte",
+    "login_title": "Content de vous revoir",
+    "register_subtitle": "Configurez le premier compte administrateur.",
+    "login_subtitle": "Connectez-vous pour gérer votre boutique.",
+    "placeholders": {
+      "name": "Nom Complet",
+      "email": "Adresse E-mail",
+      "password": "Mot de passe"
+    },
+    "buttons": {
+      "sign_in": "Se Connecter",
+      "create_account": "Créer un Compte",
+      "forgot_password": "Mot de passe oublié ?",
+      "throttled": "Veuillez patienter ({seconds}s)",
+      "sending": "Envoi...",
+      "send_code": "Envoyer le Code de Vérification",
+      "back_to_login": "Retour à la Connexion"
+    },
+    "forgot_view": {
+      "title": "Réinitialiser Votre Mot de Passe",
+      "subtitle": "Entrez votre e-mail. Nous vous enverrons un code à 6 chiffres pour vérification."
+    },
+    "decorative": {
+      "title": "Bienvenue chez",
+      "subtitle": "Entrez dans le centre de commande de votre univers e-commerce. Gérez, développez et inspirez."
+    },
+    "errors": {
+      "connect_failed": "Impossible de se connecter au serveur.",
+      "throttled": "Trop de tentatives. Veuillez patienter {seconds} secondes."
+    }
+  },
+  "reset_password_page": {
+    "title": "Vérifier & Réinitialiser",
+    "subtitle_prefix": "Un code a été envoyé à",
+    "subtitle_email_fallback": "votre e-mail",
+    "subtitle_suffix": ". Saisissez-le ci-dessous pour réinitialiser votre mot de passe.",
+    "placeholders": {
+      "code": "Code de Vérification à 6 Chiffres",
+      "new_password": "Nouveau Mot de Passe",
+      "confirm_password": "Confirmer le Nouveau Mot de Passe"
+    },
+    "buttons": {
+      "processing": "Traitement...",
+      "reset": "Vérifier & Réinitialiser le Mot de Passe"
+    },
+    "messages": {
+      "success": "Mot de passe réinitialisé avec succès ! Redirection vers la connexion..."
+    },
+    "errors": {
+      "passwords_no_match": "Les nouveaux mots de passe ne correspondent pas.",
+      "password_too_short": "Le mot de passe doit contenir au moins 6 caractères.",
+      "invalid_code": "Veuillez saisir un code à 6 chiffres valide."
+    }
+  },
+  "buy_modal": {
+    "title": "Informations de livraison",
+    "subtitle": "Veuillez fournir vos coordonnées pour finaliser la commande.",
+    "summary_panel": {
+      "items_in_cart": "{count} articles dans le panier",
+      "uncategorized": "Non classé",
+      "subtotal": "Sous-total",
+      "delivery": "Livraison",
+      "total": "Total",
+      "delivery_partner": "PARTENAIRE DE LIVRAISON",
+      "select_option_placeholder": "Sélectionnez une option",
+      "select_wilaya_placeholder": "Sélectionnez une Wilaya",
+      "color": "Couleur",
+      "size": "Taille",
+      "quantity": "Quantité"
+    },
+    "form": {
+      "first_name": "Prénom",
+      "last_name": "Nom de famille",
+      "email": "Adresse e-mail",
+      "phone1": "Numéro de téléphone",
+      "phone2": "Téléphone facultatif",
+      "phone_validation_title": "Le numéro de téléphone doit comporter exactement 10 chiffres.",
+      "wilaya": "Wilaya",
+      "wilaya_placeholder": "-- Sélectionnez une Wilaya disponible --",
+      "municipality": "Municipalité",
+      "municipality_placeholder": "-- Sélectionnez une municipalité --",
+      "courier": "Transporteur",
+      "courier_price_placeholder": "Sélectionnez pour les options",
+      "delivery_option": "Option de livraison",
+      "delivery_option_home": "À votre domicile",
+      "delivery_option_office": "À notre bureau",
+      "address": "Adresse complète",
+      "address_placeholder": "ex : Rue, Bâtiment, Appartement",
+      "place_order_button": "Passer la commande",
+      "disabled_order_button": "Sélectionnez une option de livraison"
+    },
+    "confirm_modal": {
+      "title": "Confirmez votre commande",
+      "text": "Veuillez vérifier vos informations. Une fois confirmée, votre commande sera passée et notre équipe la préparera pour la livraison.",
+      "cancel_button": "Annuler",
+      "confirm_button": "Confirmer & Envoyer",
+      "submitting_button": "Envoi en cours..."
+    },
+    "success_modal": {
+      "title": "Commande passée !",
+      "text": "Merci ! Nous avons bien reçu votre commande et vous contacterons sous peu pour finaliser les détails."
+    }
+  },
+  "cart_page": {
+    "empty_title": "Votre Panier est Vide",
+    "empty_subtitle": "Il semble que vous n'avez encore rien ajouté à votre panier.",
+    "continue_shopping": "Continuer les Achats",
+    "main_title": "Votre Panier d'Achats",
+    "item_count_one": "Vous avez 1 article dans votre panier.",
+    "item_count_other": "Vous avez {count} articles dans votre panier.",
+    "summary_title": "Résumé de la Commande",
+    "total": "Total",
+    "checkout_button": "Passer à la Caisse",
+    "select_options_prompt": "Veuillez sélectionner une couleur et une taille pour chaque article avant de continuer."
+  },
+  "cart_item": {
+    "remove_label": "Supprimer l'article"
+  },
+  "search_modal": {
+    "placeholder": "Rechercher des produits...",
+    "featured_title": "Produits en Vedette",
+    "error_message": "Échec de la récupération des produits. Veuillez réessayer plus tard.",
+    "uncategorized": "Non classé",
+    "no_results": "Aucun résultat trouvé pour \"{query}\"."
+  },
+  "about_page": {
+    "values": {
+      "badge": "Nos Valeurs Fondamentales",
+      "title": "Les Principes Qui Nous Guident",
+      "description": "Nos valeurs constituent le fondement de notre culture et guident chaque décision que nous prenons. Elles représentent non seulement qui nous sommes, mais aussi qui nous aspirons à être chaque jour."
+    },
+    "story": {
+      "badge": "Notre Histoire",
+      "title": "Notre Voyage à Travers le Temps",
+      "description": "D'un humble commencement à un leader de l'industrie, explorez les étapes clés qui ont façonné notre remarquable parcours d'innovation et de croissance."
+    },
+    "team": {
+      "badge": "Notre Équipe",
+      "title": "Rencontrez Notre Force Créatrice",
+      "description": "Apprenez à connaître les individus passionnés qui sont à l'origine de notre succès. Nous sommes un collectif diversifié de penseurs, de créateurs et d'innovateurs unis par notre engagement envers l'excellence."
+    },
+    "testimonials": {
+      "badge": "Un Pouls Perpétuel",
+      "title": "Une Chaîne de Confiance Ininterrompue",
+      "description": "La voix de notre communauté en mouvement constant. Un témoignage de la valeur continue et du soutien indéfectible que nous sommes fiers de fournir."
+    }
+  },
+  "contact_page": {
+    "info_card": {
+      "email_title": "Écrivez-nous",
+      "phone_title": "Appelez-nous",
+      "address_title": "Rendez-nous visite",
+      "email_button": "Envoyer un e-mail",
+      "phone_button": "Appeler maintenant",
+      "address_button": "Obtenir l'itinéraire"
+    },
+    "form_section": {
+      "title": "Envoyez-nous un message",
+      "subtitle": "Nous vous répondrons dès que possible.",
+      "submit_button": "Envoyer le message",
+      "submitting_button": "Envoi en cours..."
+    },
+    "faq_section": {
+      "title": "Foire Aux Questions",
+      "subtitle": "Trouvez des réponses rapides aux questions courantes sur nos produits, l'expédition et nos services.",
+      "loading": "Chargement des FAQs..."
+    },
+    "map_fallback": {
+      "title": "Notre emplacement",
+      "button": "Voir sur Google Maps"
+    }
+  }
+}

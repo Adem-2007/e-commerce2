@@ -1,0 +1,108 @@
+/* frontend/src/pages/Dashboard/info/contact/FormLabelsPanel.css */
+
+/* --- The Main Panel: Floating Glass --- */
+.aqueous-panel {
+    padding: 2rem; /* 32px */
+    border-radius: 1.25rem; /* 20px */
+    background: linear-gradient(135deg, #ffffff 0%, #f7f9fc 100%);
+    /* A soft, multi-layered border for the "glass" effect */
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02),
+                0 4px 8px rgba(0, 0, 0, 0.02),
+                0 10px 20px rgba(100, 116, 139, 0.1), /* slate-400 */
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.aqueous-header-icon {
+    background: linear-gradient(to bottom right, #e0e7ff, #c7d2fe); /* indigo-100 to indigo-200 */
+    padding: 0.75rem; /* 12px */
+    border-radius: 0.75rem;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+/* --- The Input Container --- */
+.aqueous-input-container {
+    position: relative;
+    /* This overflow is CRITICAL for the liquid fill effect */
+    overflow: hidden; 
+    border-radius: 0.75rem; /* 12px */
+    background-color: #f8fafc; /* slate-50 */
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.4s ease;
+}
+
+/* On focus-within, lift the container slightly */
+.aqueous-input-container:focus-within {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2), /* blue-400 */
+                inset 0 2px 4px 0 rgba(0, 0, 0, 0.04);
+}
+
+/* --- The Liquid Fill Effect --- */
+.aqueous-input-container::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Start with zero height */
+    height: 0%; 
+    background: linear-gradient(to top, #93c5fd, #60a5fa); /* blue-300 to blue-400 */
+    opacity: 0.5;
+    z-index: 1;
+    /* A very fluid, spring-like transition */
+    transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1); 
+}
+
+/* Animate the fill height when any element inside is focused */
+.aqueous-input-container:focus-within::before {
+    height: 100%;
+}
+
+
+/* --- The Input Field --- */
+.aqueous-input {
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1e293b; /* slate-800 */
+    /* Padding: top, right, bottom, left */
+    padding: 1.25rem 1.25rem 1.25rem 3.75rem; /* 60px on the left for the icon */
+    border: 1px solid #e2e8f0; /* slate-200 */
+    border-radius: 0.75rem;
+    /* The input itself must be transparent to see the fill effect */
+    background: transparent; 
+    outline: none;
+    position: relative;
+    z-index: 2; /* Sits on top of the liquid fill */
+    transition: border-color 0.3s ease;
+}
+
+/* Style the placeholder text */
+.aqueous-input::placeholder {
+    color: #94a3b8; /* slate-400 */
+    transition: color 0.3s ease;
+}
+
+.aqueous-input:focus::placeholder {
+    color: #3b82f6; /* blue-500 */
+}
+
+/* --- The Icon --- */
+.aqueous-icon {
+    position: absolute;
+    left: 1.25rem; /* 20px */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem; /* 24px */
+    height: 1.5rem; /* 24px */
+    color: #94a3b8; /* slate-400 */
+    z-index: 3; /* Sits on top of everything */
+    pointer-events: none; /* Allows clicks to pass through to the input */
+    transition: color 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* The "ripple" effect for the icon on focus */
+.aqueous-input-container:focus-within .aqueous-icon {
+    color: #ffffff;
+    transform: translateY(-50%) scale(1.1);
+}
