@@ -1,8 +1,10 @@
 // src/pages/Product/Card/components/Image.jsx
+
 import React, { useState, useEffect, useMemo } from 'react';
 import { Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import CachedImage from '../../../../components/CachedImage/CachedImage'; // <-- IMPORT aDDED
 
-// This helper function is correct and does not need changes.
+// This helper function correctly builds the full image URL
 const getFullImageUrl = (imageIdentifier) => {
     if (!imageIdentifier) return null;
     if (imageIdentifier.startsWith('data:')) {
@@ -20,17 +22,8 @@ const ProductImage = ({ product, t, language, imageSize }) => {
 
     const sliderImages = useMemo(() => {
         if (!product?.imageUrls) return [];
-
-        // --- FIX: Prioritize 'thumbnail' for grid view, with a fallback to 'medium'. ---
-        // This makes the component versatile. It will use the lightweight thumbnail
-        // from the main products API call, but can still use the 'medium' image
-        // if the full product object is passed (e.g., on a product detail page).
         const mainImage = product.imageUrls.thumbnail || product.imageUrls.medium;
-
-        // This line will gracefully handle the fact that secondaryImageUrls are not sent
-        // for the grid view. It will result in an empty array as intended.
         const secondaryImages = (product.secondaryImageUrls || []).map(img => img.medium);
-        
         return [mainImage, ...secondaryImages].filter(Boolean);
     }, [product]);
 
@@ -51,7 +44,6 @@ const ProductImage = ({ product, t, language, imageSize }) => {
         };
     }, [imageSize]);
 
-    // --- No changes needed for the rest of the component ---
     const prevSlide = (e) => { e.stopPropagation(); e.preventDefault(); const isFirstSlide = currentIndex === 0; const newIndex = isFirstSlide ? sliderImages.length - 1 : currentIndex - 1; setCurrentIndex(newIndex); };
     const nextSlide = (e) => { e.stopPropagation(); e.preventDefault(); const isLastSlide = currentIndex === sliderImages.length - 1; const newIndex = isLastSlide ? 0 : currentIndex + 1; setCurrentIndex(newIndex); };
     const goToSlide = (e, slideIndex) => { e.stopPropagation(); e.preventDefault(); setCurrentIndex(slideIndex); };
@@ -71,7 +63,8 @@ const ProductImage = ({ product, t, language, imageSize }) => {
             >
                 {sliderImages.length > 0 ? sliderImages.map((imagePath, index) => (
                     <div key={index} className="absolute inset-0">
-                        <img
+                        {/* --- CORRECTED LOGIC: Use CachedImage to render and cache the image --- */}
+                        <CachedImage
                             src={getFullImageUrl(imagePath)}
                             alt={`${product.name} - view ${index + 1}`}
                             style={{ objectPosition: `${(product.focusPoint?.x || 0.5) * 100}% ${(product.focusPoint?.y || 0.5) * 100}%` }}

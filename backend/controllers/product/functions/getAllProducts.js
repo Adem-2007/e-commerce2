@@ -6,7 +6,7 @@ export const getAllProducts = async (req, res) => {
     try {
         // --- 1. PAGINATION & SORTING SETUP ---
         const page = parseInt(req.query.page, 10) || 1;
-        const limit = parseInt(req.query.limit, 10) || 9; // Set default limit to 9 to match frontend
+        const limit = parseInt(req.query.limit, 10) || 9;
         const skip = (page - 1) * limit;
 
         // --- 2. BUILD THE QUERY OBJECT ---
@@ -37,7 +37,10 @@ export const getAllProducts = async (req, res) => {
                 .skip(skip)
                 .limit(limit)
                 .lean() // Use .lean() for faster, read-only queries
-                .select('name price currency imageUrls newArrival') // Select only needed fields for the grid
+                // --- FIX: Select only the thumbnail image and essential fields. ---
+                // This is the most critical performance optimization. We are changing
+                // 'imageUrls' to 'imageUrls.thumbnail' to avoid sending the full-sized Base64 images.
+                .select('name price currency newArrival imageUrls.thumbnail') 
                 .populate('category', 'name'),
             
             Product.countDocuments(query) // Get the total count for pagination

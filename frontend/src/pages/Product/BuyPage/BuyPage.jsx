@@ -8,11 +8,12 @@ import { useLanguage } from '../../../context/LanguageContext';
 import { useCart } from '../../../context/CartContext';
 import Summary from './components/Summary/Summary';
 import OrderForm from './components/Form/OrderForm';
+import { X } from 'lucide-react';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
 const getFullImageUrl = (urlPath) => {
-    if (!urlPath) return '/placeholder.png'; // Fallback image
+    if (!urlPath) return '/placeholder.png'; 
     return `${API_BASE_URL}${urlPath}`;
 };
 
@@ -47,6 +48,10 @@ const BuyPage = () => {
     const [orderSuccess, setOrderSuccess] = useState(false);
     const [formErrors, setFormErrors] = useState({});
     const formRef = useRef(null);
+
+    const handleClose = () => {
+        navigate(-1); 
+    };
 
     useEffect(() => {
         if (checkoutMode === 'direct' && !product) navigate('/shop');
@@ -233,6 +238,7 @@ const BuyPage = () => {
         }
     };
 
+    // --- UPDATED: Ensure the full product object is used for display ---
     const productForDisplay = checkoutMode === 'cart' ? (cartItems?.[0] || {}) : (product || {});
     
     const subtotal = useMemo(() => {
@@ -257,9 +263,6 @@ const BuyPage = () => {
         <>
             <div className="min-h-screen bg-white md:bg-slate-50 md:p-6 lg:p-12">
                 
-                {/* --- ADDED ---
-                    The mobile image display block has been restored for better UX.
-                */}
                 <div className="lg:hidden p-4">
                     <div className="flex items-center gap-4 max-w-6xl mx-auto">
                         <img 
@@ -280,7 +283,16 @@ const BuyPage = () => {
                     </div>
                 </div>
                 
-                <div className="grid grid-cols-1 lg:grid-cols-5 max-w-6xl mx-auto bg-white overflow-hidden md:rounded-3xl md:shadow-2xl md:shadow-slate-200 lg:gap-10">
+                <div className="grid grid-cols-1 lg:grid-cols-5 max-w-6xl mx-auto bg-white overflow-hidden md:rounded-3xl md:shadow-2xl md:shadow-slate-200 lg:gap-10 relative">
+                    
+                    <button 
+                        onClick={handleClose}
+                        className="absolute top-4 right-4 z-20 p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors text-slate-600 hover:text-slate-800"
+                        aria-label={t('buy_modal.close_button_aria_label', 'Close checkout')}
+                    >
+                        <X size={24} />
+                    </button>
+
                     <div className="order-1 lg:col-span-2 bg-slate-100 p-4 sm:p-6 lg:p-10 border-b border-slate-200 lg:border-b-0 lg:border-r">
                         <Summary 
                             productForDisplay={productForDisplay}

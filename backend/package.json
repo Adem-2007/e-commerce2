@@ -12,6 +12,8 @@
   "type": "module",
   "description": "",
   "dependencies": {
+    "@imgly/background-removal-node": "^1.4.5",
+    "apicache": "^1.6.3",
     "axios": "^1.12.2",
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
@@ -30,7 +32,7 @@
     "nodemailer": "^7.0.5",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
-    "sharp": "^0.34.3",
+    "sharp": "^0.34.4",
     "socket.io": "^4.8.1",
     "uuid": "^11.1.0"
   },

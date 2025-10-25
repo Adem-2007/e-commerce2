@@ -1,6 +1,7 @@
 // src/pages/Product/Card/components/Information.jsx
 import React from 'react';
-import { Star } from 'lucide-react';
+// The Star icon is no longer needed here
+// import { Star } from 'lucide-react';
 
 const ColorSwatches = ({ colors }) => {
     if (!colors || colors.length === 0) return null;
@@ -45,53 +46,27 @@ const SizeTags = ({ sizes }) => {
     );
 };
 
-const StarRating = ({ rating = 0, reviewCount = 0 }) => {
-    const numericRating = Math.max(0, Math.min(5, Number(rating)));
-
-    // flex-shrink-0 prevents the rating from being squished on larger screens
-    return (
-        <div className="flex flex-shrink-0 items-center gap-2">
-            <div className="flex items-center">
-                {Array.from({ length: 5 }).map((_, index) => (
-                    <Star
-                        key={index}
-                        size={16}
-                        className={index < numericRating ? 'text-amber-400 fill-amber-400' : 'text-slate-300'}
-                    />
-                ))}
-            </div>
-            {reviewCount > 0 && (
-                <span className="text-xs text-slate-500 font-medium">({reviewCount})</span>
-            )}
-        </div>
-    );
-};
+// --- REMOVED: The StarRating component is no longer needed in this file. ---
 
 const ProductInformation = ({ product }) => {
+    // --- MODIFIED: Removed rating and reviewCount from destructuring ---
     const {
         name = 'Untitled Product',
         price = 0,
         currency = 'DZD',
-        rating = 0,
-        reviewCount = 0,
         colors = [],
         sizes = []
     } = product || {};
 
     return (
         <div className="p-4 flex flex-col flex-grow text-start">
-            {/* --- RESPONSIVE HEADER --- */}
-            {/* On mobile (default): flex-col to stack title and rating */}
-            {/* On medium screens (md:): flex-row to place them side-by-side */}
-            <div className="flex flex-col md:flex-row md:justify-between md:items-start md:gap-4">
-                <h3 
-                    className="font-bold text-slate-800 text-lg leading-tight truncate mb-2 md:mb-0" 
-                    title={name}
-                >
-                    {name}
-                </h3>
-                <StarRating rating={rating} reviewCount={reviewCount} />
-            </div>
+            {/* --- MODIFIED: Simplified the header, as it only contains the title now. --- */}
+            <h3 
+                className="font-bold text-slate-800 text-lg leading-tight truncate mb-2" 
+                title={name}
+            >
+                {name}
+            </h3>
 
             {/* Swatches and Tags */}
             <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -99,8 +74,7 @@ const ProductInformation = ({ product }) => {
                 <SizeTags sizes={sizes} />
             </div>
 
-            {/* --- RESPONSIVE PRICE --- */}
-            {/* mt-auto pushes the price to the bottom of the card in all screen sizes */}
+            {/* Price section remains the same */}
             <div className="mt-auto pt-4 flex items-baseline">
                 <span className="text-2xl font-extrabold text-slate-900">{price.toFixed(2)}</span>
                 <span className="ml-1.5 text-sm font-semibold text-slate-500">{currency}</span>

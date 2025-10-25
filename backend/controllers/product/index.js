@@ -7,6 +7,7 @@ import { getProductById } from './functions/getProductById.js';
 import { getProductFilters } from './functions/getProductFilters.js';
 import { updateProduct } from './functions/updateProduct.js';
 import { incrementProductView } from './functions/incrementProductView.js';
+import { rateProduct } from './functions/rateProduct.js'; // <-- IMPORT aDDED
 
 export {
     createProduct,
@@ -15,5 +16,6 @@ export {
     getProductById,
     getProductFilters,
     updateProduct,
-    incrementProductView
+    incrementProductView,
+    rateProduct // <-- EXPORT ADDED
 };

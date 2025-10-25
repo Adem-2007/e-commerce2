@@ -2,6 +2,7 @@
 
 import express from 'express';
 import multer from 'multer';
+import apicache from 'apicache'; // --- IMPLEMENTATION: Import apicache ---
 import { 
     createProduct, 
     getAllProducts,
@@ -9,36 +10,40 @@ import {
     updateProduct,
     deleteProduct,
     getProductFilters,
-    incrementProductView
+    incrementProductView,
+    rateProduct 
 } from '../controllers/product/index.js';
 
 const router = express.Router();
 
+// --- IMPLEMENTATION: Initialize apicache ---
+const cache = apicache.middleware;
+const cacheSuccesses = cache('5 minutes'); // Cache successful responses for 5 minutes
+
 const storage = multer.memoryStorage();
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 50 * 1024 * 1024 } // Increased limit for video
+    limits: { fileSize: 50 * 1024 * 1024 }
 });
 
 const uploadFields = upload.fields([
     { name: 'image', maxCount: 1 },
-    // --- THE FIX: Increased the maximum count for secondary media to 15 ---
     { name: 'secondaryMedia', maxCount: 15 },
     { name: 'video', maxCount: 1 }
 ]);
 
-router.get('/filters', getProductFilters);
+// --- IMPLEMENTATION: Apply cache middleware to read-only routes ---
+router.get('/filters', cacheSuccesses, getProductFilters);
 
 router.route('/')
     .post(uploadFields, createProduct)
-    .get(getAllProducts);
+    .get(cacheSuccesses, getAllProducts); // Apply cache here
 
 router.route('/:id')
-    .get(getProductById) 
+    .get(getProductById) // No cache here, as a single product view might need to be fresh
     .put(uploadFields, updateProduct)
     .delete(deleteProduct);
 
-// --- NEW: Route to increment the view count for a product ---
 router.route('/:id/view').post(incrementProductView);
-
+router.post('/:id/rate', rateProduct);
 export default router;

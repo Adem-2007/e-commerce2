@@ -1,7 +1,10 @@
+// src/pages/Product/ProductDetailPage/components/image/ImageModal.jsx
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../../../../../context/LanguageContext';
+import CachedImage from '../../../../../components/CachedImage/CachedImage'; // <-- IMPORT aDDED
 
 const ImageModal = ({ isOpen, onClose, images = [], initialImage, altText }) => {
   const { language, t } = useLanguage();
@@ -59,8 +62,7 @@ const ImageModal = ({ isOpen, onClose, images = [], initialImage, altText }) => 
     <AnimatePresence>
       {isOpen && images.length > 0 && (
         <div 
-          className="fixed inset-0  z-[5000] flex items-center justify-center p-2 sm:p-4"
-          // Using onMouseDown to prevent mis-clicks when dragging
+          className="fixed inset-0 z-[5000] flex items-center justify-center p-2 sm:p-4"
           onMouseDown={onClose} 
         >
           {/* Backdrop */}
@@ -97,16 +99,21 @@ const ImageModal = ({ isOpen, onClose, images = [], initialImage, altText }) => 
           >
             {/* Image Display with Animation */}
             <AnimatePresence mode="wait">
-              <motion.img
+              {/* --- CORRECTED LOGIC: Use CachedImage instead of a standard img tag --- */}
+              <motion.div
                 key={currentIndex}
-                src={images[currentIndex]}
-                alt={`${altText} ${currentIndex + 1}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2, ease: 'easeInOut' }}
-                className="block bg-white max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl pointer-events-none"
-              />
+                className="w-full h-full flex items-center justify-center"
+              >
+                <CachedImage
+                  src={images[currentIndex]}
+                  alt={`${altText} ${currentIndex + 1}`}
+                  className="block max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl pointer-events-none"
+                />
+              </motion.div>
             </AnimatePresence>
             
             {images.length > 1 && (

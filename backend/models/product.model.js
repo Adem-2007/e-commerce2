@@ -5,19 +5,13 @@ const productSchema = new mongoose.Schema(
     {
         name: { type: String, required: [true, 'Product name is required.'], trim: true },
         description: { type: String, required: [true, 'Product description is required.'] },
-        price: { type: Number, required: [true, 'Product price is required.'], index: true }, // <-- ADDED INDEX
+        price: { type: Number, required: [true, 'Product price is required.'], index: true },
         originalPrice: { type: Number },
-        currency: {
-            type: String,
-            required: [true, 'Currency is required.'],
-            enum: ['DZD', 'EUR', 'USD'],
-            default: 'DZD'
-        },
-        category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true, index: true }, // <-- ADDED INDEX
-        colors: { type: [String], required: true, validate: [val => val.length > 0, 'At least one color is required.'], index: true }, // <-- ADDED INDEX
-        sizes: { type: [String], default: [], index: true }, // <-- ADDED INDEX
-        newArrival: { type: Boolean, default: false, index: true }, // <-- ADDED INDEX
-
+        currency: { type: String, required: [true, 'Currency is required.'], enum: ['DZD', 'EUR', 'USD'], default: 'DZD' },
+        category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true, index: true },
+        colors: { type: [String], required: true, validate: [val => val.length > 0, 'At least one color is required.'], index: true },
+        sizes: { type: [String], default: [], index: true },
+        newArrival: { type: Boolean, default: false, index: true },
         imageUrls: {
             large: { type: String, required: true },
             medium: { type: String, required: true },
@@ -28,7 +22,6 @@ const productSchema = new mongoose.Schema(
             medium: { type: String, required: true },
             thumbnail: { type: String, required: true },
         }],
-
         videoUrl: { type: String },
         focusPoint: {
             x: { type: Number, default: 0.5 },
@@ -39,31 +32,32 @@ const productSchema = new mongoose.Schema(
             required: [true, 'Gender is required.'],
             validate: [val => val.length > 0, 'At least one gender is required.'],
             enum: ['man', 'woman', 'baby'],
-            index: true // <-- ADDED INDEX
+            index: true
         },
-        height: { type: Number, index: true }, // <-- ADDED INDEX
-        materials: { type: [String], required: true, validate: [val => val.length > 0, 'At least one material is required.'], index: true }, // <-- ADDED INDEX
+        height: { type: Number, index: true },
+        materials: { type: [String], required: true, validate: [val => val.length > 0, 'At least one material is required.'], index: true },
         views: { type: Number, default: 0 },
-        viewedBy: [{ type: String }]
+        viewedBy: [{ type: String }],
+        
+        // --- NEW RATING FIELDS ---
+        reviewCount: { type: Number, default: 0 },
+        totalRatingSum: { type: Number, default: 0 },
+        ratedBy: [{ type: String }] // Stores IP addresses of users who have rated
     },
     {
-        timestamps: true, // This automatically adds an index to createdAt
+        timestamps: true,
         toObject: { virtuals: true },
         toJSON: { virtuals: true }
     }
 );
 
-// --- VIRTUALS to prevent accidental use of old fields ---
-productSchema.virtual('imageUrl').get(function() {
-    console.warn('`imageUrl` is deprecated. Please use `imageUrls.large` or another size.');
-    return this.imageUrls?.large;
+// --- VIRTUAL for calculating average rating ---
+productSchema.virtual('averageRating').get(function() {
+    if (this.reviewCount === 0) {
+        return 0;
+    }
+    return this.totalRatingSum / this.reviewCount;
 });
-
-productSchema.virtual('thumbnailUrl').get(function() {
-    console.warn('`thumbnailUrl` is deprecated. Please use `imageUrls.thumbnail`.');
-    return this.imageUrls?.thumbnail;
-});
-
 
 const Product = mongoose.models.Product || mongoose.model('Product', productSchema);
 

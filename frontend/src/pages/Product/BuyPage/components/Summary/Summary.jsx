@@ -2,11 +2,16 @@
 
 import React from 'react';
 import { useLanguage } from '../../../../../context/LanguageContext';
+import CachedImage from '../../../../../components/CachedImage/CachedImage'; // <-- 1. IMPORT
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
 const getFullImageUrl = (urlPath) => {
-    if (!urlPath) return '/placeholder.png'; // Provide a fallback image
+    if (!urlPath) return '/placeholder.png'; 
+    // This function now correctly handles both full Data URIs and relative paths
+    if (urlPath.startsWith('data:')) {
+        return urlPath;
+    }
     return `${API_BASE_URL}${urlPath}`;
 };
 
@@ -41,14 +46,14 @@ const Summary = ({
                     <div className="my-4 space-y-4 overflow-y-auto max-h-60 pr-2 custom-scrollbar">
                         {cartItems.map(item => (
                             <div key={item.cartItemId} className="flex items-start gap-4">
-                                {/* --- ADDED ---
-                                    The <img> tag for the cart item is now restored.
-                                */}
-                                <img 
-                                    src={getFullImageUrl(item.imageUrls?.thumbnail)} 
-                                    alt={item.name}
-                                    className="w-16 h-16 rounded-lg object-cover bg-slate-200 flex-shrink-0"
-                                />
+                                {/* --- 2. ADDED: CachedImage for cart items --- */}
+                                <div className="w-16 h-16 rounded-lg bg-slate-200 overflow-hidden flex-shrink-0">
+                                    <CachedImage
+                                        src={getFullImageUrl(item.imageUrls?.thumbnail)}
+                                        alt={item.name}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
                                 <div className="flex-grow min-w-0">
                                     <p className="font-semibold text-slate-700 leading-tight break-words" title={item.name}>
                                         {formatName(item.name)}
@@ -74,14 +79,14 @@ const Summary = ({
                     </div>
                 ) : (
                     <>
-                        {/* --- ADDED ---
-                            The <img> tag for the single product display is now restored.
-                        */}
-                        <img 
-                            src={getFullImageUrl(productForDisplay.imageUrls?.medium)} 
-                            alt={productForDisplay.name}
-                            className="w-full aspect-[3/4] rounded-xl object-cover bg-slate-200 mb-4"
-                        />
+                        {/* --- 3. ADDED: CachedImage for single product view --- */}
+                        <div className="w-full aspect-square rounded-xl bg-slate-200 overflow-hidden mb-4">
+                            <CachedImage
+                                src={getFullImageUrl(productForDisplay.imageUrls?.medium || productForDisplay.imageUrls?.thumbnail)}
+                                alt={productForDisplay.name}
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
                         <p className="text-base text-slate-500 my-1">{productForDisplay.category?.name || t('buy_modal.summary_panel.uncategorized')}</p>
                     </>
                 )}
