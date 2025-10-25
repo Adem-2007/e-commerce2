@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../../../../../context/LanguageContext';
-import CachedImage from '../../../../../components/CachedImage/CachedImage'; // <-- IMPORT aDDED
+import CachedImage from '../../../../../components/CachedImage/CachedImage';
 
 const ImageModal = ({ isOpen, onClose, images = [], initialImage, altText }) => {
   const { language, t } = useLanguage();
@@ -99,7 +99,6 @@ const ImageModal = ({ isOpen, onClose, images = [], initialImage, altText }) => 
           >
             {/* Image Display with Animation */}
             <AnimatePresence mode="wait">
-              {/* --- CORRECTED LOGIC: Use CachedImage instead of a standard img tag --- */}
               <motion.div
                 key={currentIndex}
                 initial={{ opacity: 0 }}

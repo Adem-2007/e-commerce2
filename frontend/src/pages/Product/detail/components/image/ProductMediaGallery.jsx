@@ -24,32 +24,16 @@ const ProductMediaGallery = ({ product }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     if (!product || allMedia.length === 0) {
-        return <div className="lg:col-span-2">No images available.</div>;
+        return <div>No images available.</div>;
     }
 
     const imageSourcesForModal = allMedia.map(media => media.url);
 
     return (
-        <>
-            {/* Thumbnail Column */}
-            <div className="order-2 lg:order-1 flex lg:flex-col gap-2 overflow-x-auto lg:overflow-y-auto custom-scrollbar pr-2">
-                {allMedia.map((media, index) => (
-                    <button
-                        key={index}
-                        onClick={() => setSelectedMedia(media)}
-                        className={`w-20 h-20 lg:w-full lg:h-auto lg:aspect-square flex-shrink-0 rounded-lg overflow-hidden border-2 transition-colors duration-200 ${selectedMedia.url === media.url ? 'border-blue-500' : 'border-transparent hover:border-gray-300'}`}
-                    >
-                        <CachedImage
-                            src={media.thumb}
-                            alt={`${product.name} thumbnail ${index + 1}`}
-                            className="w-full h-full object-cover"
-                        />
-                    </button>
-                ))}
-            </div>
-
+        // --- MODIFIED: Wrapped in a single div with flex-col to stack main image and thumbnails ---
+        <div className="flex flex-col gap-4">
             {/* Main Image Display */}
-            <div className="order-1 lg:order-2 relative group aspect-square">
+            <div className="relative group aspect-square">
                 <CachedImage
                     src={selectedMedia.url}
                     alt={product.name}
@@ -64,6 +48,24 @@ const ProductMediaGallery = ({ product }) => {
                 </button>
             </div>
 
+            {/* Thumbnail Row --- MODIFIED: Layout is now a horizontal row below the main image */}
+            <div className="flex gap-2 overflow-x-auto custom-scrollbar pb-2">
+                {allMedia.map((media, index) => (
+                    <button
+                        key={index}
+                        onClick={() => setSelectedMedia(media)}
+                        // --- MODIFIED: Simplified classes for a consistent horizontal thumbnail layout ---
+                        className={`w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-colors duration-200 ${selectedMedia.url === media.url ? 'border-blue-500' : 'border-transparent hover:border-gray-300'}`}
+                    >
+                        <CachedImage
+                            src={media.thumb}
+                            alt={`${product.name} thumbnail ${index + 1}`}
+                            className="w-full h-full object-cover"
+                        />
+                    </button>
+                ))}
+            </div>
+
             <ImageModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
@@ -71,7 +73,7 @@ const ProductMediaGallery = ({ product }) => {
                 initialImage={selectedMedia.url}
                 altText={product.name}
             />
-        </>
+        </div>
     );
 };
 

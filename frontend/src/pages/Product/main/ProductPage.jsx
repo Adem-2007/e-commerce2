@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 // --- CONTEXT & COMPONENT IMPORTS ---
+import { useProductCache } from '../../../context/ProductCacheContext';
 import { useLanguage } from '../../../context/LanguageContext';
 import ProductGrid from './components/Grid/ProductGrid';
 import ProductCardSkeleton from '../../Product/Card/ProductCardSkeleton';
@@ -41,6 +42,7 @@ const SidebarSkeleton = () => (
 
 const ProductPage = () => {
     const { language, t } = useLanguage();
+    const { cachedProducts } = useProductCache();
     const navigate = useNavigate();
 
     // --- STATE MANAGEMENT ---
@@ -57,18 +59,14 @@ const ProductPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     
-    // --- FIX: Use a ref to robustly track if the component has mounted ---
-    // This will prevent the update effect from running on the initial render.
     const isMounted = useRef(false);
 
     // Effect 1: Fetches ALL essential data in parallel on initial component mount.
-    // This runs only ONCE.
     useEffect(() => {
         const fetchInitialData = async () => {
             setIsLoading(true);
             setError(null);
             try {
-                // Run all initial requests in parallel to avoid a request waterfall
                 const [categoriesRes, filtersRes, productsRes] = await Promise.all([
                     axios.get(`${API_BASE_URL}/api/categories`),
                     axios.get(`${API_BASE_URL}/api/products/filters`),
@@ -91,19 +89,17 @@ const ProductPage = () => {
         fetchInitialData();
     }, [t]);
 
-    // Effect 2: Debounces filter changes to prevent excessive API calls.
+    // Effect 2: Debounces filter changes.
     useEffect(() => {
         const timer = setTimeout(() => {
             setDebouncedFilters(filters);
-            setCurrentPage(1); // Reset to page 1 when filters change
+            setCurrentPage(1);
         }, 500);
         return () => clearTimeout(timer);
     }, [filters]);
 
-    // Effect 3: Fetches products when filters or page number change, but SKIPS the initial render.
+    // Effect 3: Fetches products when filters or page number change.
     useEffect(() => {
-        // If the component has not mounted yet, set the ref to true and exit.
-        // This ensures this effect block is skipped on the very first render.
         if (!isMounted.current) {
             isMounted.current = true;
             return;
@@ -112,7 +108,7 @@ const ProductPage = () => {
         const fetchFilteredProducts = async () => {
             setIsLoading(true);
             setError(null);
-            window.scrollTo(0, 0); // Scroll to top for better UX on page/filter change
+            window.scrollTo(0, 0);
 
             try {
                 const params = new URLSearchParams({
@@ -136,7 +132,21 @@ const ProductPage = () => {
 
         fetchFilteredProducts();
 
-    }, [debouncedFilters, currentPage, t]); // Dependencies that trigger updates
+    }, [debouncedFilters, currentPage, t]);
+
+    // Effect 4: Listens for changes in the product cache and merges them into the local state.
+    useEffect(() => {
+        if (products.length > 0 && Object.keys(cachedProducts).length > 0) {
+            setProducts(currentProducts =>
+                currentProducts.map(p => {
+                    if (cachedProducts[p._id]) {
+                        return { ...p, ...cachedProducts[p._id] };
+                    }
+                    return p;
+                })
+            );
+        }
+    }, [cachedProducts]);
 
     const handleFilterChange = useCallback((newFilters) => {
         setFilters(newFilters);
@@ -152,8 +162,7 @@ const ProductPage = () => {
     };
 
     const renderContent = () => {
-        // Show skeletons only on the very first load
-        if (isLoading && products.length === 0) {
+        if (isLoading) {
             return (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {Array.from({ length: PRODUCTS_PER_PAGE }).map((_, index) => (

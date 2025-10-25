@@ -1,3 +1,5 @@
+// src/pages/Product/ProductDetailPage/components/information/ProductOptions.jsx
+
 import React from 'react';
 import { Check } from 'lucide-react';
 import { useLanguage } from '../../../../../context/LanguageContext';
@@ -41,23 +43,21 @@ const ProductOptions = ({ colors, sizes, selectedColor, selectedSize, onColorSel
     );
 
     return (
-        <div className="flex flex-col md:flex-row gap-5 border-t border-gray-200 pt-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 border-t border-gray-200 pt-5">
             {/* Color Section */}
-            <div className="flex-1">
-                <h3 className="text-sm font-semibold text-gray-600 mb-3">{t('color_label')}:</h3>
+            <div>
+                <h3 className="text-sm font-semibold text-gray-600 mb-2">{t('color_label')}:</h3>
                 <OptionGrid
                     options={colors}
                     renderOption={renderColorOption}
                     type="color"
                 />
             </div>
-
-            {/* Vertical Separator */}
-            <div className="hidden md:block w-px bg-gray-200 self-stretch my-2"></div>
-
+            
             {/* Size Section */}
-            <div className="flex-1">
-                <h3 className="text-sm  font-semibold text-gray-600 mb-3">{t('size_label')}: <span className="text-gray-900 font-bold">{selectedSize}</span></h3>
+            {/* Use a border for a cleaner separation than a manual divider */}
+            <div className="md:border-l md:border-gray-200 md:pl-6">
+                <h3 className="text-sm font-semibold text-gray-600 mb-2">{t('size_label')}: <span className="text-gray-900 font-bold">{selectedSize}</span></h3>
                 <OptionGrid
                     options={sizes}
                     renderOption={renderSizeOption}

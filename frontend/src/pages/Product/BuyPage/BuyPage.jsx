@@ -262,27 +262,7 @@ const BuyPage = () => {
     return (
         <>
             <div className="min-h-screen bg-white md:bg-slate-50 md:p-6 lg:p-12">
-                
-                <div className="lg:hidden p-4">
-                    <div className="flex items-center gap-4 max-w-6xl mx-auto">
-                        <img 
-                            src={getFullImageUrl(productForDisplay.imageUrls?.thumbnail)} 
-                            alt={productForDisplay.name}
-                            className="w-20 h-20 rounded-lg object-cover bg-slate-200"
-                        />
-                        <div>
-                            <h2 className="font-bold text-slate-800 leading-tight">
-                                {checkoutMode === 'cart' 
-                                    ? t('buy_modal.summary_panel.items_in_cart', { count: cartItems.length }) 
-                                    : productForDisplay.name}
-                            </h2>
-                            <p className="text-sm text-slate-500 mt-1">
-                                {t('buy_modal.summary_panel.proceeding_to_checkout')}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
+                                
                 <div className="grid grid-cols-1 lg:grid-cols-5 max-w-6xl mx-auto bg-white overflow-hidden md:rounded-3xl md:shadow-2xl md:shadow-slate-200 lg:gap-10 relative">
                     
                     <button 

@@ -36,19 +36,27 @@ export const getAllProducts = async (req, res) => {
                 .sort({ createdAt: -1 })
                 .skip(skip)
                 .limit(limit)
-                .lean() // Use .lean() for faster, read-only queries
-                // --- FIX: Select only the thumbnail image and essential fields. ---
-                // This is the most critical performance optimization. We are changing
-                // 'imageUrls' to 'imageUrls.thumbnail' to avoid sending the full-sized Base64 images.
-                .select('name price currency newArrival imageUrls.thumbnail') 
+                .lean()
+                // --- FIX: Add `reviewCount` and `totalRatingSum` to the selection ---
+                .select('name price currency newArrival imageUrls.thumbnail reviewCount totalRatingSum') 
                 .populate('category', 'name'),
             
-            Product.countDocuments(query) // Get the total count for pagination
+            Product.countDocuments(query)
         ]);
 
-        // --- 4. SEND PAGINATED RESPONSE ---
+        // --- 4. MANUALLY CALCULATE AVERAGE RATING (since .lean() disables Mongoose virtuals) ---
+        const productsWithRating = products.map(product => {
+            const averageRating = product.reviewCount > 0 ? product.totalRatingSum / product.reviewCount : 0;
+            return {
+                ...product,
+                averageRating
+            };
+        });
+
+        // --- 5. SEND PAGINATED RESPONSE ---
         res.status(200).json({
-            products,
+            // --- FIX: Send the new array that includes the calculated averageRating ---
+            products: productsWithRating,
             totalPages: Math.ceil(totalProducts / limit),
             currentPage: page,
             totalProducts

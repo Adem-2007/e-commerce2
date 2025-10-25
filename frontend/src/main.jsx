@@ -9,6 +9,7 @@ import { SiteIdentityProvider } from './context/SiteIdentityContext.jsx';
 // --- LANGUAGE PROVIDER IS NO LONGER IMPORTED OR USED HERE ---
 import App from './App';
 import './index.css';
+import { ProductCacheProvider } from './context/ProductCacheContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <AuthProvider>
         <SiteIdentityProvider>
           <CartProvider>
+            <ProductCacheProvider >
             <App />
+            </ProductCacheProvider >
           </CartProvider>
         </SiteIdentityProvider>
       </AuthProvider>
